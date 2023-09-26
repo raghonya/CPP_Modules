@@ -5,6 +5,7 @@
 int	checkDigits(std::string info)
 {
 	size_t i = 0;
+
 	while (i < info.length())
 	{
 		if (info[i] < 48 || info[i] > 57)
@@ -52,7 +53,7 @@ void	PhoneBook::search_contact(void)
 	std::string		input;
 
 	for (int i = 0; i < 8; i++)
-		this->users[i].printAllContacts(i);
+		this->users[i].printContactList(i);
 	while (true)
 	{
 		std::cout << "Enter index of contact\n";

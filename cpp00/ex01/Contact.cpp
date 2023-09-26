@@ -34,7 +34,7 @@ void	Contact::printContactInfo(void)
 }
 
 
-void	Contact::printAllContacts(int index)
+void	Contact::printContactList(int index)
 {
 	std::cout << std::setw(10) << index << "|";
 	

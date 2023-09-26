@@ -18,7 +18,7 @@ public:
 	Contact (void);
 	void	setInfo (std::string info, std::string type);
 	void	printContactInfo (void);
-	void	printAllContacts (int index);
+	void	printContactList (int index);
 
 };
 
