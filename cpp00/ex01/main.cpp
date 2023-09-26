@@ -14,7 +14,7 @@ int main()
 
 		if (number > 7)
 			number = 0;
-		std::cout << "Enter commands ADD, SEARCH, or EXIT\n";
+		std::cout << "Enter command: ADD, SEARCH, or EXIT\n";
 		getline(std::cin, input);
 		if (std::cin.fail())
 		{
