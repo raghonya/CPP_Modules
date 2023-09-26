@@ -1,6 +1,6 @@
 #include <iostream>
-#include "Contact.hpp"
-#include "PhoneBook.hpp"
+#include <Contact.hpp>
+#include <PhoneBook.hpp>
 
 
 int main()
@@ -24,11 +24,9 @@ int main()
 		if (input.compare("EXIT") == 0)
 			return (0);
 		else if (input.compare("ADD") == 0)
-		{
 			book.add_contact(number++);
-		}
 		else if (input.compare("SEARCH") == 0)
-			book.search_contact(number);
+			book.search_contact();
 	}
 	return (0);
 }

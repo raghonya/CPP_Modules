@@ -1,4 +1,5 @@
-#include "Contact.hpp"
+#include <Contact.hpp>
+#include <iomanip>
 
 Contact::Contact(void)
 {
@@ -35,21 +36,8 @@ void	Contact::printContactInfo(void)
 
 void	Contact::printAllContacts(int index)
 {
-	int	spaces;
-
-	// INDEX
-	spaces = 1;
-	for (; spaces < 10; spaces++)
-	{
-		std::cout << " ";
-	}
-	std::cout << index << "|";
-	// FIRST NAME
-	spaces = this->firstName.length();
-	for (; spaces < 10; spaces++)
-	{
-		std::cout << " ";
-	}
+	std::cout << std::setw(10) << index << "|";
+	
 	if (this->firstName.length() > 10)
 	{
 		for(int i = 0; i < 9; i++)
@@ -57,14 +45,8 @@ void	Contact::printAllContacts(int index)
 		std::cout << ".|";
 	}
 	else
-		std::cout << this->firstName << "|";
-
-	// LAST NAME
-	spaces = this->lastName.length();
-	for (; spaces < 10; spaces++)
-	{
-		std::cout << " ";
-	}
+		std::cout << std::setw(10) << this->firstName << "|";
+	
 	if (this->lastName.length() > 10)
 	{
 		for(int i = 0; i < 9; i++)
@@ -72,14 +54,8 @@ void	Contact::printAllContacts(int index)
 		std::cout << ".|";
 	}
 	else
-		std::cout << this->lastName << "|";
+		std::cout << std::setw(10) << this->lastName << "|";
 	
-	// NICK NAME
-	spaces = this->nickName.length();
-	for (; spaces < 10; spaces++)
-	{
-		std::cout << " ";
-	}
 	if (this->nickName.length() > 10)
 	{
 		for(int i = 0; i < 9; i++)
@@ -87,37 +63,7 @@ void	Contact::printAllContacts(int index)
 		std::cout << ".|";
 	}
 	else
-		std::cout << this->nickName << "|";
-
-	// // PHONE NUMBER
-	// spaces = this->phoneNumber.length();
-	// for (; spaces < 10; spaces++)
-	// {
-	// 	std::cout << " ";
-	// }
-	// if (this->phoneNumber.length() > 10)
-	// {
-	// 	for(int i = 0; i < 9; i++)
-	// 		std::cout << this->phoneNumber[i];
-	// 	std::cout << ".|";
-	// }
-	// else
-	// 	std::cout << this->phoneNumber << "|";
-
-	// // DARKEST SECRET
-	// spaces = this->darkestSec.length();
-	// for (; spaces < 10; spaces++)
-	// {
-	// 	std::cout << " ";
-	// }
-	// if (this->darkestSec.length() > 10)
-	// {
-	// 	for(int i = 0; i < 9; i++)
-	// 		std::cout << this->darkestSec[i];
-	// 	std::cout << ".|";
-	// }
-	// else
-	// 	std::cout << this->darkestSec << "|";
-
+		std::cout << std::setw(10) << this->nickName << "|";
+	
 	std::cout << std::endl;
 }

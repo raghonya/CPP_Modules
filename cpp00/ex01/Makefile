@@ -2,7 +2,7 @@ NAME		=	phonebook
 
 CXX			=	c++
 
-CXXFLAGS	=	-fsanitize=address -g -std=c++98 #-Wall -Wextra -Werror
+CXXFLAGS	=	-fsanitize=address -g -std=c++98 -Wall -Wextra -Werror
 
 SRCS		=	$(wildcard *.cpp)
 
@@ -12,23 +12,23 @@ OBJDIR		=	obj
 
 OBJS		=	$(SRCS:%.cpp=$(OBJDIR)/%.o)
 
-all:				$(OBJDIR) $(NAME)
+all:			$(OBJDIR) $(NAME)
 
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
-$(OBJDIR)/%.o:		%.cpp $(INCS) Makefile
+$(OBJDIR)/%.o:	%.cpp $(INCS) Makefile
 	$(CXX) $(CXXFLAGS) -I./ -c $< -o $@
 
-$(NAME):			$(OBJS)
+$(NAME):		$(OBJS)
 	$(CXX) $(CXXFLAGS) $(OBJS) -I./ -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)
 
-fclean:				clean
+fclean:			clean
 	rm -rf $(NAME)
 
-re:					fclean all
+re:				fclean all
 
-.PHONY:				all clean fclean re 
+.PHONY:			all clean fclean re 
