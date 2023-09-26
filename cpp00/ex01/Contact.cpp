@@ -1,4 +1,13 @@
-#include <Contact.hpp>
+#include "Contact.hpp"
+
+Contact::Contact(void)
+{
+	this->firstName = "";
+	this->lastName = "";
+	this->nickName = "";
+	this->phoneNumber = "";
+	this->darkestSec = "";
+}
 
 void	Contact::setInfo(std::string info, std::string type)
 {

@@ -1,7 +1,8 @@
 #pragma once
 
 #include <iostream>
-
+#include <cstdio>
+#include <cstdlib>
 class Contact
 {
 private:
@@ -11,5 +12,6 @@ private:
 	std::string phoneNumber;
 	std::string darkestSec;
 public:
+	Contact(void);
 	void	setInfo(std::string info, std::string type);
 };

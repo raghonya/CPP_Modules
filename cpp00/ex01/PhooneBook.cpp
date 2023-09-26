@@ -1,5 +1,5 @@
-#include <PhoneBook.hpp>
-#include <Contact.hpp>
+#include "PhoneBook.hpp"
+#include "Contact.hpp"
 
 int	checkDigits(std::string info)
 {
@@ -27,7 +27,7 @@ void	PhoneBook::setContact(int number, std::string type)
 		if (std::cin.fail())
 		{
 			std::cout << "Cin failed!!!\n";
-			std::exit(1) ;
+			exit(1) ;
 		}
 		if (type == "phoneNumber" && checkDigits(info))
 			continue ;
@@ -46,7 +46,13 @@ void	PhoneBook::add_contact(int number)
 	setContact(number, "darkestSec");
 }
 
+
+
 void	PhoneBook::search_contact(int number)
 {
+	for (int i = 0; i < 8; i++)
+	{
+		while (this->users[i].)
+	}
 	return ;
 }

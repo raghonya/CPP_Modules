@@ -1,6 +1,6 @@
 #include <iostream>
-#include <Contact.hpp>
-#include <PhoneBook.hpp>
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 
 int main()
@@ -30,7 +30,7 @@ int main()
 		}
 		else if (input.compare("SEARCH") == 0)
 			book.search_contact(number);
-		printf ("ban\n");
+		// printf ("ban\n");
 	}
 	return (0);
 }
