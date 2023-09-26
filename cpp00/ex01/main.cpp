@@ -6,15 +6,15 @@
 int main()
 {
 	PhoneBook	book;
+	int			number = 0;
 
 	while (true)
 	{
 		std::string input;
-		int			number = 0;
 
 		if (number > 7)
 			number = 0;
-		std::cout << "enter commands ADD, SEARCH, or EXIT\n";
+		std::cout << "Enter commands ADD, SEARCH, or EXIT\n";
 		getline(std::cin, input);
 		if (std::cin.fail())
 		{
@@ -25,12 +25,10 @@ int main()
 			return (0);
 		else if (input.compare("ADD") == 0)
 		{
-			number++;
-			book.add_contact(number);
+			book.add_contact(number++);
 		}
 		else if (input.compare("SEARCH") == 0)
 			book.search_contact(number);
-		// printf ("ban\n");
 	}
 	return (0);
 }
