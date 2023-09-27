@@ -14,7 +14,7 @@ int main()
 
 		if (number > 7)
 			number = 0;
-		std::cout << "Enter command: ADD, SEARCH, or EXIT\n";
+		std::cout << "Enter command: ADD, SEARCH, EXIT\n";
 		getline(std::cin, input);
 		if (std::cin.fail())
 		{
@@ -22,9 +22,15 @@ int main()
 			return (0);
 		}
 		if (input.compare("EXIT") == 0)
+		{
+			std::cout << "The contacts are lost forever!" << std::endl;
 			return (0);
+		}
 		else if (input.compare("ADD") == 0)
+		{
 			book.add_contact(number++);
+			std::cout << "Contact added to your phonebook" << std::endl;
+		}
 		else if (input.compare("SEARCH") == 0)
 			book.search_contact();
 	}

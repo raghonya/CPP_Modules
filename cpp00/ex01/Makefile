@@ -18,10 +18,10 @@ $(OBJDIR):
 	mkdir -p $(OBJDIR)
 
 $(OBJDIR)/%.o:	%.cpp $(INCS) Makefile
-	$(CXX) $(CXXFLAGS) -I./ -c $< -o $@
+	$(CXX) $(CXXFLAGS) -I . -c $< -o $@
 
 $(NAME):		$(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -I./ -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -I . -o $(NAME)
 
 clean:
 	rm -rf $(OBJDIR)
