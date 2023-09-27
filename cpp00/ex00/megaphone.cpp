@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 		if (i != argc - 1)
 			std::cout << " ";
 	}
-	std::cout << "\n";
+	std::cout << std::endl;
 	return (0);
+	
 }
