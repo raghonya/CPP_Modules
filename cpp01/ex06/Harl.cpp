@@ -48,10 +48,21 @@ void	Harl::setPtrs(void)
 
 void	Harl::complain(std::string level)
 {
-	int			i = 0;
-	std::string	levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	char		firstLetter = *level.c_str();
 
-	for (; i < 4 && levels[i].compare(level); ++i)
-		;
-	(this->*funcPtr[i])();
+	switch (firstLetter)
+	{
+		case 'D':
+			(this->*funcPtr[0])();
+		case 'I':
+			(this->*funcPtr[1])();
+		case 'W':
+			(this->*funcPtr[2])();
+		case 'E':
+			(this->*funcPtr[3])();
+			break ;
+		default:
+			(this->*funcPtr[4])();
+			break ;
+	}
 }
