@@ -13,5 +13,5 @@ void	Zombie::setName( std::string name)
 
 Zombie::~Zombie()
 {
-	std::cout << "Zombie with name " << this->name << " was destroyed" << std::endl;
+	std::cout << "Zombie with name " << this->name << " died again :(" << std::endl;
 }
