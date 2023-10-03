@@ -16,12 +16,12 @@ class	Fixed
 		int				toInt( void ) const;
 		float			toFloat( void ) const;
 		void			operator=( const Fixed& obj );
-		// bool			operator<(const Fixed& obj);
-		// bool			operator>(const Fixed& obj);
-		// bool			operator<=(const Fixed& obj);
-		// bool			operator>=(const Fixed& obj);
-		// bool			operator==(const Fixed& obj);
-		// bool			operator!=(const Fixed& obj);
+		bool			operator<(const Fixed& obj);
+		bool			operator>(const Fixed& obj);
+		bool			operator<=(const Fixed& obj);
+		bool			operator>=(const Fixed& obj);
+		bool			operator==(const Fixed& obj);
+		bool			operator!=(const Fixed& obj);
 		// void			operator*(const Fixed& obj);
 		// void			operator/(const Fixed& obj);
 		Fixed			operator-( const Fixed& b );

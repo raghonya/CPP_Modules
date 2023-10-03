@@ -55,7 +55,7 @@ std::ostream&	operator<<(std::ostream& stream, const Fixed& obj)
 	return (stream);
 }
 
-// OPERATOR OVERLOADING
+// OPERATOR OVERLOADING ///////////////////////////////////////////////////////////////
 
 Fixed	Fixed::operator+(const Fixed& a)
 {
@@ -104,4 +104,35 @@ Fixed	Fixed::operator--(int ok)
 	this->fpn -= 1;
 	return (ret);
 }
+
+bool	Fixed::operator<(const Fixed& obj)
+{
+	return (this->fpn < obj.fpn);
+}
+
+bool	Fixed::operator<=(const Fixed& obj)
+{
+	return (this->fpn <= obj.fpn);
+}
+
+bool	Fixed::operator>(const Fixed& obj)
+{
+	return (this->fpn > obj.fpn);
+}
+
+bool	Fixed::operator>=(const Fixed& obj)
+{
+	return (this->fpn >= obj.fpn);
+}
+
+bool	Fixed::operator==(const Fixed& obj)
+{
+	return (this->fpn == obj.fpn);
+}
+
+bool	Fixed::operator!=(const Fixed& obj)
+{
+	return (this->fpn != obj.fpn);
+}
+
 
