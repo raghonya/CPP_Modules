@@ -3,7 +3,7 @@
 
 int	main(int argc, char **argv)
 {
-	if (argc > 2 || (std::string(argv[1]).compare("DEBUG") \
+	if (argc != 2 || (std::string(argv[1]).compare("DEBUG") \
 	&& std::string(argv[1]).compare("WARNING") \
 	&& std::string(argv[1]).compare("INFO") \
 	&& std::string(argv[1]).compare("ERROR")))
@@ -11,6 +11,7 @@ int	main(int argc, char **argv)
 		std::cout << "Give one of these messages: DEBUG, INFO, WARNING, ERROR" << std::endl;
 		return (1);
 	}
+
 	Harl	a;
 
 	a.setPtrs();
