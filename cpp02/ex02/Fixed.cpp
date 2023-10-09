@@ -55,13 +55,13 @@ std::ostream&	operator<<(std::ostream& stream, const Fixed& obj)
 	return (stream);
 }
 
-// OPERATOR OVERLOADING ///////////////////////////////////////////////////////////////
+///////////////////////// OPERATOR OVERLOADING ///////////////////////////////////////////////////////////////
 
 Fixed	Fixed::operator+(const Fixed& a)
 {
 	Fixed	ret;
 
-	ret.fpn = (this->fpn + a.fpn);
+	ret.fpn = this->toFloat() + a.toFloat();
 	return (ret);
 }
 
@@ -76,7 +76,7 @@ Fixed	Fixed::operator++(int ok)
 	Fixed	ret(*this);
 
 	(void)ok;
-	ret.fpn = this->fpn;
+
 	this->fpn += 1;
 	return (ret);
 }
@@ -85,7 +85,7 @@ Fixed	Fixed::operator-(const Fixed& a)
 {
 	Fixed	ret;
 
-	ret.fpn = this->fpn - a.fpn;
+	ret.fpn = this->toFloat() - a.toFloat();
 	return (ret);
 }
 
@@ -100,8 +100,24 @@ Fixed	Fixed::operator--(int ok)
 	Fixed	ret(*this);
 
 	(void)ok;
-	ret.fpn = this->fpn;
+
 	this->fpn -= 1;
+	return (ret);
+}
+
+Fixed	Fixed::operator*(const Fixed& a)
+{
+	Fixed	ret;
+
+	ret = this->toFloat() * a.toFloat();
+	return (ret);
+}
+
+Fixed	Fixed::operator/(const Fixed& a)
+{
+	Fixed	ret;
+
+	ret = this->toFloat() / a.toFloat();
 	return (ret);
 }
 
@@ -135,4 +151,21 @@ bool	Fixed::operator!=(const Fixed& obj)
 	return (this->fpn != obj.fpn);
 }
 
+const Fixed&	Fixed::min(const Fixed& a, const Fixed& b)
+{
+	return (a < b ? a : b);
+}
 
+const Fixed&	Fixed::max(const Fixed& a, const Fixed& b)
+{
+	return (a > b ? a : b);
+}
+Fixed&	Fixed::min(Fixed& a, Fixed& b)
+{
+	return (a < b ? a : b);
+}
+
+Fixed&	Fixed::max(Fixed& a, Fixed& b)
+{
+	return (a > b ? a : b);
+}
