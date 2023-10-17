@@ -12,10 +12,11 @@ Fixed::Fixed(const Fixed& obj)
 	this->fpn = obj.getRawBits();
 }
 
-void	Fixed::operator=(const Fixed& obj)
+Fixed&	Fixed::operator=(const Fixed& obj)
 {
 	std::cout << "Copy assignment operator called" << std::endl;
 	this->fpn = obj.getRawBits();
+	return (*this);
 }
 
 Fixed::~Fixed() { std::cout << "Destructor called" << std::endl; }

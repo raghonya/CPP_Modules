@@ -26,7 +26,7 @@ class	Fixed
 		Fixed				operator++( int ok );
 		Fixed				operator++( void );
 		float				toFloat( void ) const;
-		void				operator=( const Fixed& obj );
+		Fixed&				operator=( const Fixed& obj );
 		bool				operator<( const Fixed& obj ) const;
 		bool				operator>( const Fixed& obj ) const;
 		bool				operator<=( const Fixed& obj ) const;
