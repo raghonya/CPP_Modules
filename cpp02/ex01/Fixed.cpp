@@ -1,7 +1,11 @@
 #include "Fixed.hpp"
 #include <cmath>
 
-Fixed::Fixed() { std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed()
+{
+	std::cout << "Default constructor called" << std::endl;
+	this->fpn = 0;
+}
 
 Fixed::Fixed(const Fixed& obj)
 {

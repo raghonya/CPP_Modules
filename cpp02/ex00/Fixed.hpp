@@ -6,7 +6,7 @@
 class	Fixed
 {
 	private:
-		int					number;
+		int					fpn;
 		static const int	bits = 8;
 	public:
 		Fixed();

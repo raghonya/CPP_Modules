@@ -1,7 +1,11 @@
 #include "Fixed.hpp"
 #include <cmath>
 
-Fixed::Fixed() { std::cout << "Default constructor called" << std::endl; }
+Fixed::Fixed()
+{
+	std::cout << "Default constructor called" << std::endl;
+	this->fpn = 0;
+}
 
 Fixed::Fixed(const Fixed& obj)
 {
@@ -57,7 +61,7 @@ std::ostream&	operator<<(std::ostream& stream, const Fixed& obj)
 
 ///////////////////////// OPERATOR OVERLOADING ///////////////////////////////////////////////////////////////
 
-Fixed	Fixed::operator+(const Fixed& a)
+Fixed	Fixed::operator+(const Fixed& a) const
 {
 	Fixed	ret;
 
@@ -81,7 +85,7 @@ Fixed	Fixed::operator++(int ok)
 	return (ret);
 }
 
-Fixed	Fixed::operator-(const Fixed& a)
+Fixed	Fixed::operator-(const Fixed& a) const
 {
 	Fixed	ret;
 
@@ -105,7 +109,7 @@ Fixed	Fixed::operator--(int ok)
 	return (ret);
 }
 
-Fixed	Fixed::operator*(const Fixed& a)
+Fixed	Fixed::operator*(const Fixed& a) const
 {
 	Fixed	ret;
 
@@ -113,40 +117,46 @@ Fixed	Fixed::operator*(const Fixed& a)
 	return (ret);
 }
 
-Fixed	Fixed::operator/(const Fixed& a)
+Fixed	Fixed::operator/(const Fixed& a) const
 {
 	Fixed	ret;
 
+	if (!a.toFloat())
+	{
+		std::cout << "Found division by 0!!!" << std::endl;
+		std::cout << "Returning left operand..." << std::endl;
+		return (this->toFloat());
+	}
 	ret = this->toFloat() / a.toFloat();
 	return (ret);
 }
 
-bool	Fixed::operator<(const Fixed& obj)
+bool	Fixed::operator<(const Fixed& obj) const
 {
 	return (this->fpn < obj.fpn);
 }
 
-bool	Fixed::operator<=(const Fixed& obj)
+bool	Fixed::operator<=(const Fixed& obj) const
 {
 	return (this->fpn <= obj.fpn);
 }
 
-bool	Fixed::operator>(const Fixed& obj)
+bool	Fixed::operator>(const Fixed& obj) const
 {
 	return (this->fpn > obj.fpn);
 }
 
-bool	Fixed::operator>=(const Fixed& obj)
+bool	Fixed::operator>=(const Fixed& obj) const
 {
 	return (this->fpn >= obj.fpn);
 }
 
-bool	Fixed::operator==(const Fixed& obj)
+bool	Fixed::operator==(const Fixed& obj) const
 {
 	return (this->fpn == obj.fpn);
 }
 
-bool	Fixed::operator!=(const Fixed& obj)
+bool	Fixed::operator!=(const Fixed& obj) const
 {
 	return (this->fpn != obj.fpn);
 }
