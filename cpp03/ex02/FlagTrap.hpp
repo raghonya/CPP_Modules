@@ -7,6 +7,7 @@
 class FlagTrap : public ClapTrap
 {
 	public:
+		FlagTrap();
 		FlagTrap(std::string name);
 		FlagTrap(const FlagTrap& bro);
 		FlagTrap&	operator=(const FlagTrap& bro);

@@ -1,6 +1,8 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap() { std::cout << "ScavTrap default constructor called!" << std::endl; }
+
+ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "ScavTrap parameter constructor called" << std::endl;
 	this->name = name;
@@ -9,7 +11,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	this->attackDamage = 20;
 }
 
-ScavTrap::ScavTrap(const ScavTrap& bro) : ClapTrap(bro)
+ScavTrap::ScavTrap(const ScavTrap& bro)
 {
 	std::cout << "ScavTrap copy constructor called" << std::endl;
 	this->name = bro.name;

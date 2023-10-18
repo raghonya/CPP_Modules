@@ -2,24 +2,13 @@
 
 int	main()
 {
-	// ClapTrap	bro("Bro");
+	FlagTrap bro("Kiborg-ubiyca");
 
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-	// bro.attack("someone");
-
-	// bro.beRepaired(200);
-	// bro.takeDamage(10);
-	// bro.takeDamage(1000);
-	// bro.attack("barev");
-	{
-		FlagTrap bro("flagBro");
-	}
+	bro.highFivesGuys();
+	bro.takeDamage(70);
+	bro.highFivesGuys();
+	bro.beRepaired(10);
+	bro.takeDamage(700);
+	bro.highFivesGuys();
 	return (0);
 }
