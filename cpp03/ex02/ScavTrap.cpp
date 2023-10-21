@@ -1,6 +1,8 @@
 #include "ScavTrap.hpp"
 
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap() { std::cout << "ScavTrap default constructor called" << std::endl; }
+
+ScavTrap::ScavTrap(std::string name)
 {
 	std::cout << "ScavTrap parameter constructor called" << std::endl;
 	this->name = name;
@@ -34,8 +36,21 @@ void	ScavTrap::guardGate(void) const
 		std::cout << "ScavTrap " << this->name \
 		<< " is now in Gate keeper mode -_-" << std::endl;
 	else
-		std::cout << "ScavTrap " << this->name \
-		<< " has not enough energy to guard( or dead :) )!!!" << std::endl;
+		std::cout << "ScavTrap " << this->name << \
+		" has not enough energy to guard( or dead :) )!!!" << std::endl;
+}
+
+void 	ScavTrap::attack(const std::string& target)
+{
+	if (this->energy && this->hp)
+	{
+		std::cout << "ScavTrap " << this->name << " attacks " << target \
+		<< ", causing " << this->attackDamage <<  " points of damage!" << std::endl;
+		this->energy -= 1;
+	}
+	else
+		std::cout << "ScavTrap " << this->name << \
+		" has not enough energy to attack( or dead :) )!!!" << std::endl;
 }
 
 ScavTrap::~ScavTrap() { std::cout << "ScavTrap destructor called" << std::endl; }

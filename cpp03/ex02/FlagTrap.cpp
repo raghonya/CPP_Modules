@@ -1,6 +1,8 @@
 #include "FlagTrap.hpp"
 
-FlagTrap::FlagTrap(std::string name) : ClapTrap(name)
+FlagTrap::FlagTrap() { std::cout << "FlagTrap default constructor called" << std::endl; }
+
+FlagTrap::FlagTrap(std::string name)
 {
 	std::cout << "FlagTrap parameter constructor called" << std::endl;
 	this->name = name;
@@ -26,6 +28,19 @@ FlagTrap& FlagTrap::operator=(const FlagTrap& bro)
 	this->energy = bro.energy;
 	this->attackDamage = bro.attackDamage;
 	return (*this);
+}
+
+void 	FlagTrap::attack(const std::string& target)
+{
+	if (this->energy && this->hp)
+	{
+		std::cout << "FlagTrap " << this->name << " attacks " << target \
+		<< ", causing " << this->attackDamage <<  " points of damage!" << std::endl;
+		this->energy -= 1;
+	}
+	else
+		std::cout << "FlagTrap " << this->name << \
+		" has not enough energy to attack( or dead :) )!!!" << std::endl;
 }
 
 void	FlagTrap::highFivesGuys(void) const
