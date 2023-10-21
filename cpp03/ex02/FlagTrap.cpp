@@ -11,7 +11,7 @@ FlagTrap::FlagTrap(std::string name)
 	this->attackDamage = 30;
 }
 
-FlagTrap::FlagTrap(const FlagTrap& bro)
+FlagTrap::FlagTrap(const FlagTrap& bro) : ClapTrap(bro)
 {
 	std::cout << "FlagTrap copy constructor called" << std::endl;
 	this->name = bro.name;

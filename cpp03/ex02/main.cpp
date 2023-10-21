@@ -20,7 +20,6 @@ int	main()
 	// bro.attack("barev");
 	{
 		FlagTrap bro("flagBro");
-		FlagTrap	bro2(bro);
 	}
 	return (0);
 }
