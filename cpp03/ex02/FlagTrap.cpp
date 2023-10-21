@@ -11,7 +11,7 @@ FlagTrap::FlagTrap(std::string name)
 	this->attackDamage = 30;
 }
 
-FlagTrap::FlagTrap(const FlagTrap& bro) : ClapTrap(bro)
+FlagTrap::FlagTrap(const FlagTrap& bro)
 {
 	std::cout << "FlagTrap copy constructor called" << std::endl;
 	this->name = bro.name;
@@ -48,9 +48,8 @@ void	FlagTrap::highFivesGuys(void) const
 	if (this->energy && this->hp)
 		std::cout << "High five :):):):):):):):):):)" << std::endl;
 	else
-		std::cout << "FlagTrap" << this->name \
-		<< " has not enough energy to 'hogh five( or dead :) )!!!" << std::endl;
-
+		std::cout << "FlagTrap " << this->name \
+		<< " has not enough energy to 'high five'( or dead :) )!!!" << std::endl;
 }
 
 FlagTrap::~FlagTrap() { std::cout << "FlagTrap destructor called" << std::endl; }
