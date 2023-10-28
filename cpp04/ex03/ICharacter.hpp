@@ -2,13 +2,16 @@
 # define ICHARACTER_HPP
 
 #include <iostream>
+#include "AMateria.hpp"
 
 class ICharacter
 {
 	private:
 		std::string	name;
+		// AMateria	**inventory;
 	public:
 		ICharacter();
+		ICharacter(std::string name);
 		ICharacter(const ICharacter& other);
 		ICharacter&	operator=(const ICharacter& other);
 	public:
