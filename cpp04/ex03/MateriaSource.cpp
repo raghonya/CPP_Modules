@@ -17,3 +17,7 @@ MateriaSource& operator=(const MateriaSource& other)
 
 MateriaSource::~MateriaSource() { std::cout << "MateriaSource's default constructor called" << std::endl; }
 
+void	MateriaSource::learnMateria(AMateria* m)
+{
+
+}

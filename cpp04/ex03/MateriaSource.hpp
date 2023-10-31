@@ -5,6 +5,8 @@
 
 class MateriaSource : public IMateriaSource
 {
+	private:
+		AMateria	**inventory;
 	public:
 		MateriaSource();
 		MateriaSource(const MateriaSource& other);
