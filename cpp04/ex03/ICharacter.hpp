@@ -6,14 +6,6 @@
 
 class ICharacter
 {
-	private:
-		std::string	name;
-		// AMateria	**inventory;
-	public:
-		ICharacter();
-		ICharacter(std::string name);
-		ICharacter(const ICharacter& other);
-		ICharacter&	operator=(const ICharacter& other);
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;
