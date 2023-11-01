@@ -2,7 +2,8 @@
 
 Character::Character()
 {
-	std::cout << "Character's default constructor called" << std::endl;
+	// std::cout << "Character's default constructor called" << std::endl;
+	this->name = "person";
 	this->inventory = new AMateria*[4];
 	for (int i = 0; i < 4; ++i)
 		this->inventory[i] = nullptr;
@@ -10,7 +11,7 @@ Character::Character()
 
 Character::Character(std::string name)
 {
-	std::cout << "Character's parameter constructor called" << std::endl;
+	// std::cout << "Character's parameter constructor called" << std::endl;
 	this->name = name;
 	this->inventory = new AMateria*[4];
 	for (int i = 0; i < 4; ++i)
@@ -19,7 +20,7 @@ Character::Character(std::string name)
 
 Character::Character(const Character& other)
 {
-	std::cout << "Character's copy constructor called" << std::endl;
+	// std::cout << "Character's copy constructor called" << std::endl;
 	this->name = other.name;
 	this->inventory = new AMateria*[4];
 	for (int i = 0; i < 4; ++i)
@@ -28,24 +29,30 @@ Character::Character(const Character& other)
 
 Character& Character::operator=(const Character& other)
 {
-	std::cout << "Character's assignment operator called" << std::endl;
+	// std::cout << "Character's assignment operator called" << std::endl;
+
+	if (this == &other)
+		return (*this);
 
 	this->name = other.name;
 
-	AMateria	**oldInventory = this->inventory;
+	for (int i = 0; i < 4; ++i)
+		delete this->inventory[i];
 	delete[] this->inventory;
 	this->inventory = new AMateria*[4];
 	for (int i = 0; i < 4; i++)
-		this->inventory[i] = oldInventory[i];
+		this->inventory[i] = other.inventory[i];
 	
 	return (*this);
 }
 
 Character::~Character()
 {
-	std::cout << "Character's constructor called" << std::endl;
+	// std::cout << "Character's destructor called" << std::endl;
 
-	delete[] inventory;
+	for (int i = 0; i < 4; ++i)
+		delete this->inventory[i];
+	delete[] this->inventory;
 }
 
 std::string const & Character::getName() const
@@ -53,7 +60,6 @@ std::string const & Character::getName() const
 	return (this->name);
 }
 
-// 99% chi ashxatelu ete 1 pointerov lini
 void	Character::equip(AMateria* m)
 {
 	int		i = 0;
@@ -65,7 +71,6 @@ void	Character::equip(AMateria* m)
 	else
 		std::cout << "Inventory is full" << std::endl;
 }
-// anpayman pordzel
 
 void	Character::unequip(int idx)
 {
