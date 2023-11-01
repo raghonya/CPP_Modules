@@ -13,5 +13,8 @@ int main()
 	i->makeSound(); //will output the cat sound!
 	j->makeSound(); 
 
+	delete i;
+	delete j;
+
 	return (0);
 }
