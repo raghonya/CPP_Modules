@@ -8,9 +8,8 @@ int	main()
 	}
 	catch (const std::exception& e)
 	{
-		
 		// std::cout << "Exception catched" << std::endl;
-		std::cout << "barev " << e.what() << std::endl;;
+		std::cerr << e.what() << std::endl;;
 	}
 	return (0);
 }

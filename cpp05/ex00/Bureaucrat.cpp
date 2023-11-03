@@ -5,14 +5,9 @@ Bureaucrat::Bureaucrat(): name("John"), grade(1) {}
 Bureaucrat::Bureaucrat(const std::string name, int grade): name(name), grade(grade)
 {
 	if (grade < 1)
-	{
 		throw GradeTooHighException();
-	}
 	else if (grade > 150)
-	{
 		throw GradeTooLowException();
-	}
-
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other): name(other.name), grade(other.grade) {}
