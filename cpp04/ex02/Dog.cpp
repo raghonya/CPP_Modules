@@ -10,6 +10,7 @@ Dog::Dog()
 Dog::Dog(const Dog& other) : Animal(other)
 {
 	std::cout << "Dog's copy constructor called" << std::endl;
+
 	this->type = other.type;
 
 	this->brain = new Brain();
@@ -20,8 +21,13 @@ Dog::Dog(const Dog& other) : Animal(other)
 Dog&	Dog::operator=(const Dog& other)
 {
 	std::cout << "Dog's assignment operator called" << std::endl;
+
+	if (this == &other)
+		return (*this);
+
 	this->type = other.type;
 
+	delete this->brain;
 	this->brain = new Brain();
 	for (int i = 0; i < 100; ++i)
 		this->brain->setElement(other.brain->getElement(i), i);
