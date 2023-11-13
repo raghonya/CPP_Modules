@@ -24,7 +24,12 @@ class Form
 		int					getGradeToExecute() const;
 		void				beSigned(const Bureaucrat& bro);
 
-
+		class FormIsSigned : public std::exception
+		{
+			public:
+				const char* what() const throw() { return ("this form is already signed"); }
+		};
+		
 		class GradeTooLowException : public std::exception
 		{
 			public:

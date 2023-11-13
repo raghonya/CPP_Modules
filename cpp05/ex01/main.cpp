@@ -10,6 +10,13 @@ int	main()
 		Form	dprocicDusMnaluForm("Hamletik", 15, 25);
 
 		std::cout << dprocicDusMnaluForm << std::endl;
+
+		Bureaucrat boz("a", 2);
+		// dprocicDusMnaluForm.beSigned(boz);
+		boz.signForm(dprocicDusMnaluForm);
+		std::cout << dprocicDusMnaluForm.getSign() << std::endl;;
+		boz.signForm(dprocicDusMnaluForm);
+		// dprocicDusMnaluForm.beSigned(boz);
 		
 	}
 	catch (const std::exception& e)

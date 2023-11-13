@@ -25,18 +25,11 @@ int					Form::getGradeToExecute() const { return (this->gradeToExecute); }
 void	Form::beSigned(const Bureaucrat& bro)
 {
 	if (this->sign == true)
-	{
-		std::cout << "Form is already signed" << std::endl;
-		return ;
-	}
+		throw FormIsSigned();
+	if (bro.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
 	if (bro.getGrade() <= this->gradeToSign)
-	{
 		this->sign = true;
-		std::cout << bro.getName() << " signed " << this->name << " form" << std::endl;
-	}
-	else
-		std::cout << bro.getName() << " couldn’t sign " << this->name << " because " \
-		<< bro.getName() << "has not enough grade to sign" << std::endl;
 }
 
 std::ostream&	operator<<(std::ostream& stream, const Form& form)
