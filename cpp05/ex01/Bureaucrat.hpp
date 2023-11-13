@@ -20,6 +20,7 @@ class Bureaucrat
 		void				decrementGrade( void );
 		int					getGrade( void ) const;
 		const std::string	getName( void ) const;
+		void				signForm();
 
 		class GradeTooLowException : public std::exception
 		{

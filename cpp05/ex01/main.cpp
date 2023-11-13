@@ -1,12 +1,16 @@
-#include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 int	main()
 {
 	try
 	{
-		Bureaucrat	bro("Gag", 15);
+		// Bureaucrat	bro("Gag", 15);
 
-		std::cout << bro << std::endl;
+		// std::cout << bro << std::endl;
+		Form	dprocicDusMnaluForm("Hamletik", 15, 25);
+
+		std::cout << dprocicDusMnaluForm << std::endl;
+		
 	}
 	catch (const std::exception& e)
 	{
