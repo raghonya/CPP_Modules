@@ -5,7 +5,6 @@
 
 class AForm
 {
-
 	private:
 		const std::string	name;
 		bool				sign;
@@ -24,6 +23,13 @@ class AForm
 		int					getGradeToExecute() const;
 		void				beSigned(const Bureaucrat& bro);
 		virtual void		execute(Bureaucrat const & executor) const = 0;
+		
+		class FormIsntSigned : public std::exception
+		{
+			public:
+				const char* what() const throw() { return ("Form isn`t signed, can`t exexute!"); }
+		};
+
 		class FormIsSigned : public std::exception
 		{
 			public:
