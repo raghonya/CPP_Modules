@@ -3,7 +3,7 @@
 
 #include "Bureaucrat.hpp"
 
-class Form
+class AForm
 {
 
 	private:
@@ -12,18 +12,18 @@ class Form
 		const int			gradeToSign;
 		const int			gradeToExecute;
 	public:
-		Form();
-		Form(const Form& other);
-		Form&	operator=(const Form& other);
-		~Form();
+		AForm();
+		AForm(const AForm& other);
+		AForm&	operator=(const AForm& other);
+		~AForm();
 	public:
-		Form(const std::string name, const int gTS, const int gTE);
+		AForm(const std::string name, const int gTS, const int gTE);
 		std::string			getName() const;
 		bool				getSign() const;
 		int					getGradeToSign() const;
 		int					getGradeToExecute() const;
 		void				beSigned(const Bureaucrat& bro);
-
+		virtual void		execute(Bureaucrat const & executor) const = 0;
 		class FormIsSigned : public std::exception
 		{
 			public:
@@ -43,6 +43,6 @@ class Form
 		};
 };
 
-std::ostream&	operator<<(std::ostream& stream, const Form& form);
+std::ostream&	operator<<(std::ostream& stream, const AForm& AForm);
 
 #endif

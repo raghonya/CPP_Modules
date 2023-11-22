@@ -1,10 +1,10 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 
-Form::Form() : name("contract"), sign(false), gradeToSign(75), gradeToExecute(75) {}
+AForm::AForm() : name("contract"), sign(false), gradeToSign(75), gradeToExecute(75) {}
 
-Form::Form(const Form& other): name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
+AForm::AForm(const AForm& other): name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
 
-Form::Form(const std::string name, const int gTS, const int gTE): \
+AForm::AForm(const std::string name, const int gTS, const int gTE): \
 name(name), sign(false), gradeToSign(gTS), gradeToExecute(gTE)
 {
 	if (gTS < 1 || gTE < 1)
@@ -13,16 +13,16 @@ name(name), sign(false), gradeToSign(gTS), gradeToExecute(gTE)
 		throw GradeTooLowException();
 }
 
-Form&	Form::operator=(const Form& other) { (void)other; return (*this); }
+AForm&	AForm::operator=(const AForm& other) { (void)other; return (*this); }
 
-Form::~Form() {}
+AForm::~AForm() {}
 
-std::string			Form::getName() const { return (this->name); }
-bool				Form::getSign() const { return (this->sign); }
-int					Form::getGradeToSign() const { return (this->gradeToSign); }
-int					Form::getGradeToExecute() const { return (this->gradeToExecute); }
+std::string			AForm::getName() const { return (this->name); }
+bool				AForm::getSign() const { return (this->sign); }
+int					AForm::getGradeToSign() const { return (this->gradeToSign); }
+int					AForm::getGradeToExecute() const { return (this->gradeToExecute); }
 
-void	Form::beSigned(const Bureaucrat& bro)
+void	AForm::beSigned(const Bureaucrat& bro)
 {
 	if (this->sign == true)
 		throw FormIsSigned();
@@ -32,11 +32,11 @@ void	Form::beSigned(const Bureaucrat& bro)
 		this->sign = true;
 }
 
-std::ostream&	operator<<(std::ostream& stream, const Form& form)
+std::ostream&	operator<<(std::ostream& stream, const AForm& AForm)
 {
-	stream << "Forms\nName: " << form.getName() << "\nSign: " << form.getSign() \
-	<< "\nGrade to sign: " << form.getGradeToSign() << "\nGrade to execute: " \
-	<< form.getGradeToExecute();
+	stream << "Forms\nName: " << AForm.getName() << "\nSign: " << AForm.getSign() \
+	<< "\nGrade to sign: " << AForm.getGradeToSign() << "\nGrade to execute: " \
+	<< AForm.getGradeToExecute();
 
 	return (stream);
 }
