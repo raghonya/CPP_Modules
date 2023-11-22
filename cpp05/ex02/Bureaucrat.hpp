@@ -23,7 +23,7 @@ class Bureaucrat
 		int					getGrade( void ) const;
 		const std::string	getName( void ) const;
 		void				signForm(AForm& form) const;
-		void				executeForm(AForm& form) const;
+		void				executeForm(AForm const & form) const;
 
 		class GradeTooLowException : public std::exception
 		{
