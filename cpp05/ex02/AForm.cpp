@@ -23,15 +23,6 @@ bool				AForm::getSign() const { return (this->sign); }
 int					AForm::getGradeToSign() const { return (this->gradeToSign); }
 int					AForm::getGradeToExecute() const { return (this->gradeToExecute); }
 
-void	AForm::beSigned(const Bureaucrat& bro)
-{
-	if (this->sign == true)
-		throw FormIsSigned();
-	if (bro.getGrade() > this->gradeToSign)
-		throw GradeTooLowException();
-	this->sign = true;
-}
-
 std::ostream&	operator<<(std::ostream& stream, const AForm& AForm)
 {
 	stream << "Forms\nName: " << AForm.getName() << "\nSign: " << AForm.getSign() \

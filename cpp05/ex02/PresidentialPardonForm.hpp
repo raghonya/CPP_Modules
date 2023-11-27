@@ -1,5 +1,5 @@
-#ifndef RRF_HPP
-# define RRF_HPP
+#ifndef PPF_HPP
+# define PPF_HPP
 
 #include "AForm.hpp"
 
@@ -18,6 +18,7 @@ class PresidentialPardonForm : public AForm
 	public:
 		PresidentialPardonForm(const std::string target);
 		void	execute(Bureaucrat const & executor) const;
+		void	beSigned(const Bureaucrat& bro);
 };
 
 #endif

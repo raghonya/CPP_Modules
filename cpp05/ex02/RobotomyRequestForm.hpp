@@ -19,6 +19,7 @@ class RobotomyRequestForm : public AForm
 	public:
 		RobotomyRequestForm(const std::string target);
 		void	execute(Bureaucrat const & executor) const;
+		void	beSigned(const Bureaucrat& bro);
 };
 
 #endif

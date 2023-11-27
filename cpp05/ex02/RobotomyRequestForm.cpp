@@ -10,6 +10,15 @@ RobotomyRequestForm&	RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 RobotomyRequestForm::~RobotomyRequestForm() {}
 
+void	RobotomyRequestForm::beSigned(const Bureaucrat& bro)
+{
+	if (this->sign == true)
+		throw FormIsSigned();
+	if (bro.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
+	this->sign = true;
+}
+
 void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	if (!this->sign)

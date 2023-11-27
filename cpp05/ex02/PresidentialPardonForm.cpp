@@ -10,6 +10,15 @@ PresidentialPardonForm&	PresidentialPardonForm::operator=(const PresidentialPard
 
 PresidentialPardonForm::~PresidentialPardonForm() {}
 
+void	PresidentialPardonForm::beSigned(const Bureaucrat& bro)
+{
+	if (this->sign == true)
+		throw FormIsSigned();
+	if (bro.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
+	this->sign = true;
+}
+
 void	PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (!this->sign)

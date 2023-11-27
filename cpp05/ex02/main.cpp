@@ -9,7 +9,7 @@ int	main()
 	try
 	{
 		ShrubberyCreationForm a("Formaeli");
-		std::cout << "demic  voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
+		// std::cout << "demic  voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
 		Bureaucrat bro("Hamlet", 2);
 		bro.signForm(a);
 		std::cout << "voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;

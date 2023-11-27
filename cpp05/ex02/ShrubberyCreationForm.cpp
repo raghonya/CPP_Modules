@@ -10,6 +10,15 @@ ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 ShrubberyCreationForm::~ShrubberyCreationForm() {}
 
+void	ShrubberyCreationForm::beSigned(const Bureaucrat& bro)
+{
+	if (this->sign == true)
+		throw FormIsSigned();
+	if (bro.getGrade() > this->gradeToSign)
+		throw GradeTooLowException();
+	this->sign = true;
+}
+
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	std::cout << "yani xi " << this->name << " " << " " << this->gradeToSign << " " << this->gradeToExecute << " " << this->sign << std::endl;
