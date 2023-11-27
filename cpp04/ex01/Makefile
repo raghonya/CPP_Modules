@@ -2,7 +2,7 @@ NAME		=	animal
 
 CXX			=	c++
 
-CXXFLAGS	=	-fsanitize=address -g -std=c++11 -Wall -Wextra -Werror
+CXXFLAGS	=	-fsanitize=address -g -std=c++98 -Wall -Wextra -Werror
 
 SRCS		=	$(wildcard *.cpp)
 
