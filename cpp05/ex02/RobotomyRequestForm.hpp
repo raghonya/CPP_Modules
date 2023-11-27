@@ -2,6 +2,7 @@
 # define RRF_HPP
 
 #include "AForm.hpp"
+#include "cstdlib"
 
 class RobotomyRequestForm : public AForm
 {
@@ -18,7 +19,6 @@ class RobotomyRequestForm : public AForm
 	public:
 		RobotomyRequestForm(const std::string target);
 		void	execute(Bureaucrat const & executor) const;
-
 };
 
 #endif

@@ -1,22 +1,19 @@
 #include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
-// #include
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 #include <cstdlib>
 
 int	main()
 {
 	try
 	{
-		ShrubberyCreationForm a;
-		Bureaucrat b;
-		AForm &c = a;
-		b.signForm(c);
-
-
-		// Form	*form = new ;
-		// for (int i = 0; i < 10; i++)
-		// std::cout << std::rand() % 2 << std::endl;
-		
+		ShrubberyCreationForm a("Formaeli");
+		std::cout << "demic  voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
+		Bureaucrat bro("Hamlet", 2);
+		bro.signForm(a);
+		std::cout << "voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
+		bro.executeForm(a);
 	}
 	catch (const std::exception& e)
 	{

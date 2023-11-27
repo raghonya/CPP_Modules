@@ -47,18 +47,19 @@ void	Bureaucrat::executeForm(AForm const & form) const
 {
 	try
 	{
+		std::cout << form.getName() << " " << form.getGradeToSign() << " " << form.getGradeToExecute() << " " << form.getSign() << std::endl;
 		form.execute(*this);
 	}
 	catch (const std::exception& e)
 	{
-		std::cerr << this->getName() << " couldn’t sign " << form.getName() << " because ";
+		std::cerr << this->getName() << " couldn’t execute " << form.getName() << " because ";
 		std::cerr << e.what() << std::endl;
 	}
 }
 
 std::ostream&	operator<<(std::ostream& stream, Bureaucrat bro)
 {
-	stream << bro.getName() << ", bureaucrat grade " << bro.getGrade();
+	stream << bro.getName() << ", bureaucrat grade: " << bro.getGrade();
 
 	return (stream);
 }

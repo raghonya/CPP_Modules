@@ -1,8 +1,6 @@
 #include "AForm.hpp"
 
-AForm::AForm() : name("contract"), sign(false), gradeToSign(75), gradeToExecute(75) {}
-
-AForm::AForm(const AForm& other): name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
+AForm::AForm() : name("contract"), sign(false), gradeToSign(75), gradeToExecute(75) {std::cout << "default AForm\n";}
 
 AForm::AForm(const std::string name, const int gTS, const int gTE): \
 name(name), sign(false), gradeToSign(gTS), gradeToExecute(gTE)
@@ -11,7 +9,10 @@ name(name), sign(false), gradeToSign(gTS), gradeToExecute(gTE)
 		throw GradeTooHighException();
 	else if (gTS > 150 || gTE > 150)
 		throw GradeTooLowException();
+	std::cout << "pARAM AForm\n";
 }
+
+AForm::AForm(const AForm& other): name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) {}
 
 AForm&	AForm::operator=(const AForm& other) { (void)other; return (*this); }
 
@@ -28,8 +29,7 @@ void	AForm::beSigned(const Bureaucrat& bro)
 		throw FormIsSigned();
 	if (bro.getGrade() > this->gradeToSign)
 		throw GradeTooLowException();
-	if (bro.getGrade() <= this->gradeToSign)
-		this->sign = true;
+	this->sign = true;
 }
 
 std::ostream&	operator<<(std::ostream& stream, const AForm& AForm)

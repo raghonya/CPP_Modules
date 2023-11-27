@@ -27,7 +27,7 @@ class AForm
 		class FormIsntSigned : public std::exception
 		{
 			public:
-				const char* what() const throw() { return ("Form isn`t signed, can`t exexute!"); }
+				const char* what() const throw() { return ("Form isn`t signed"); }
 		};
 
 		class FormIsSigned : public std::exception
