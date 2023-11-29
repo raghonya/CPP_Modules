@@ -9,11 +9,21 @@ int	main()
 	try
 	{
 		ShrubberyCreationForm a("Formaeli");
-		// std::cout << "demic  voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
-		Bureaucrat bro("Hamlet", 2);
+		Bureaucrat bro("Hamlet", 50);
 		bro.signForm(a);
-		std::cout << "voreve bannnn " << a.getName() << " " << a.getSign() << std::endl;
+		std::cout << "Shrubberry form: " << a.name << " " << a.gradeToSign << " " << a.gradeToExecute << " " << a.sign << std::endl;
 		bro.executeForm(a);
+
+		RobotomyRequestForm	b("RoboForm");
+		bro.signForm(b);
+		std::cout << "Robotomy form: " << b.getName() << " " << b.getGradeToSign() << " " << b.getGradeToExecute() << " " << b.getSign() << std::endl;
+		bro.executeForm(b);
+		
+		PresidentialPardonForm	c("Presidental");
+		bro.signForm(c);
+		std::cout << "Presidential form: " << c.getName() << " " << c.getGradeToSign() << " " << c.getGradeToExecute() << " " << c.getSign() << std::endl;
+		bro.executeForm(c);
+
 	}
 	catch (const std::exception& e)
 	{

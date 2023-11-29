@@ -1,10 +1,11 @@
 #include "ShrubberyCreationForm.hpp"
+#include <fstream>
 
-ShrubberyCreationForm::ShrubberyCreationForm() : AForm("unknown", 145, 137), name("unknown"), gradeToSign(145), gradeToExecute(137) {std::cout << "baaaaaan1\n";}
+ShrubberyCreationForm::ShrubberyCreationForm() : AForm(), name("unknown"), sign(false), gradeToSign(145), gradeToExecute(137) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm(target, 145, 137), name(target), gradeToSign(145), gradeToExecute(137) {std::cout << "baaaaaan2\n";}
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string target) : AForm(), name(target), sign(false), gradeToSign(145), gradeToExecute(137) {}
 
-ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) { (void)other; std::cout << "baaaaaan3\n";}
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other) : AForm(other), name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) { (void)other; }
 
 ShrubberyCreationForm&	ShrubberyCreationForm::operator=(const ShrubberyCreationForm& other) { (void)other; return (*this); }
 
@@ -27,26 +28,24 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	if (executor.getGrade() > this->gradeToExecute)
 		throw GradeTooLowException();
 	std::cout << "Creating ASCII tree..." << std::endl;
-	
-	int height = 10;
 
-    for (int i = 0; i < height; ++i)
+	std::string		filename = this->name + (std::string)"_shtubberry";
+	std::ofstream	file;
+	file.open((this->name + (std::string)"_shrubberry").c_str(), std::ios::out | std::ios::trunc);
+
+	for (int i = 0; i < 20; ++i)
 	{
-        for (int j = 0; j < height - i - 1; ++j) {
-            std::cout << " ";
-        }
+		for (int j = 0; j < 20 - i - 1; ++j)
+			file << ' ';
+		for (int j = 0; j < i * 2 + 1; ++j)
+			file << '*';
+		file << std::endl;
+	}
 
-        for (int k = 0; k < 2 * i + 1; ++k) {
-            std::cout << "*";
-        }
-
-        std::cout << std::endl;
-    }
-
-    for (int i = 0; i < height / 3; ++i) {
-        for (int j = 0; j < height - 1; ++j) {
-            std::cout << " ";
-        }
-        std::cout << "*" << std::endl;
-    }
+	std::cout << "ASCII tree created, check the file \"" << this->name + (std::string)"_shtubberry\"" << std::endl;
 }
+
+std::string			ShrubberyCreationForm::getName() const { return (this->name); }
+bool				ShrubberyCreationForm::getSign() const { return (this->sign); }
+int					ShrubberyCreationForm::getGradeToSign() const { return (this->gradeToSign); }
+int					ShrubberyCreationForm::getGradeToExecute() const { return (this->gradeToExecute); }

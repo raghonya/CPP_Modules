@@ -1,8 +1,8 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm() : AForm(), name("unknown"), gradeToSign(72), gradeToExecute(45) {}
+RobotomyRequestForm::RobotomyRequestForm() : AForm(), name("unknown"), sign(false), gradeToSign(72), gradeToExecute(45) {}
 
-RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm(), name(target), gradeToSign(72), gradeToExecute(45) {}
+RobotomyRequestForm::RobotomyRequestForm(const std::string target) : AForm(), name(target), sign(false), gradeToSign(72), gradeToExecute(45) {}
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other) : AForm(other), name(other.name), gradeToSign(other.gradeToSign), gradeToExecute(other.gradeToExecute) { (void)other; }
 
@@ -30,5 +30,9 @@ void	RobotomyRequestForm::execute(Bureaucrat const & executor) const
 		std::cout << this->name << " has been robotomized successfully" << std::endl;
 	else
 		std::cout << "Robotomy failed!!!" << std::endl;
-
 }
+
+std::string			RobotomyRequestForm::getName() const { return (this->name); }
+bool				RobotomyRequestForm::getSign() const { return (this->sign); }
+int					RobotomyRequestForm::getGradeToSign() const { return (this->gradeToSign); }
+int					RobotomyRequestForm::getGradeToExecute() const { return (this->gradeToExecute); }

@@ -14,13 +14,13 @@ class AForm
 		AForm();
 		AForm(const AForm& other);
 		AForm&	operator=(const AForm& other);
-		~AForm();
+		virtual	~AForm();
 	public:
 		AForm(const std::string name, const int gTS, const int gTE);
-		std::string			getName() const;
-		bool				getSign() const;
-		int					getGradeToSign() const;
-		int					getGradeToExecute() const;
+		virtual	std::string	getName() const;
+		virtual	bool		getSign() const;
+		virtual	int			getGradeToSign() const;
+		virtual	int			getGradeToExecute() const;
 		virtual void		beSigned(const Bureaucrat& bro) = 0;
 		virtual void		execute(Bureaucrat const & executor) const = 0;
 		

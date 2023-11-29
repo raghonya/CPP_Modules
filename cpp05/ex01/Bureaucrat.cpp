@@ -35,6 +35,7 @@ void	Bureaucrat::signForm(Form& form) const
 	try
 	{
 		form.beSigned(*this);
+		std::cout << "Bureaucrat " << this->name << " signed " << form.getName() << std::endl;
 	}
 	catch (const std::exception& e)
 	{
