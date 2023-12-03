@@ -1,4 +1,4 @@
-NAME		=	animal
+NAME		=	form
 
 CXX			=	c++
 
