@@ -42,6 +42,8 @@ void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	}
 
 	std::cout << "ASCII tree created, check the file \"" << this->name + (std::string)"_shtubberry\"" << std::endl;
+
+	file.close();
 }
 
 std::string			ShrubberyCreationForm::getName() const { return (this->name); }
