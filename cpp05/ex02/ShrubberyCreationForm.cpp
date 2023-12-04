@@ -22,7 +22,6 @@ void	ShrubberyCreationForm::beSigned(const Bureaucrat& bro)
 
 void	ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	std::cout << "yani xi " << this->name << " " << " " << this->gradeToSign << " " << this->gradeToExecute << " " << this->sign << std::endl;
 	if (!this->sign)
 		throw FormIsntSigned();
 	if (executor.getGrade() > this->gradeToExecute)

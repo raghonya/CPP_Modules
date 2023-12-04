@@ -22,9 +22,19 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 Bureaucrat::~Bureaucrat() {};
 
-void	Bureaucrat::incrementGrade( void ) { this->grade -= 1; }
+void	Bureaucrat::incrementGrade( void )
+{
+	if (this->grade == 1)
+		throw GradeTooHighException();
+	this->grade -= 1;
+}
 
-void	Bureaucrat::decrementGrade( void ) { this->grade += 1; }
+void	Bureaucrat::decrementGrade( void )
+{
+	if (this->grade == 150)
+		throw GradeTooLowException();
+	this->grade += 1;
+}
 
 int		Bureaucrat::getGrade( void ) const { return (this->grade); }
 

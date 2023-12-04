@@ -10,14 +10,13 @@ int	main()
 	try
 	{
 		Intern	gagik;
-		AForm*	newForm = gagik.makeForm("presidential", "home");
-		Bureaucrat norik("norik", 111);
+
+		AForm*	newForm = gagik.makeForm("robotomy", "home");
+		Bureaucrat norik("norik", 24);
 
 		norik.signForm(*newForm);
 
-		std::cout << "form " << newForm->getName() << " " \
-		<< newForm->getSign() << " " << newForm->getGradeToSign() \
-		<< " " << newForm->getGradeToExecute() << std::endl;
+		std::cout << *newForm << std::endl;
 
 		delete newForm;
 
