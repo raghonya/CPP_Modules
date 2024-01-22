@@ -19,10 +19,11 @@ int	main()
 		std::cout << "Robotomy form: " << b.getName() << " " << b.getGradeToSign() << " " << b.getGradeToExecute() << " " << b.getSign() << std::endl;
 		bro.executeForm(b);
 		
-		PresidentialPardonForm	c("Presidental");
+		PresidentialPardonForm	c("PresidentalForm");
 		bro.signForm(c);
 		std::cout << "Presidential form: " << c.getName() << " " << c.getGradeToSign() << " " << c.getGradeToExecute() << " " << c.getSign() << std::endl;
 		bro.executeForm(c);
+		std::cout << c << std::endl;
 
 	}
 	catch (const std::exception& e)

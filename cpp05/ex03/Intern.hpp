@@ -23,7 +23,7 @@ class Intern
 		class FormDoesntExist : public std::exception
 		{
 			public:
-				const char* what() const throw() { return ("Invalid Form name"); }
+				const char* what() const throw() { return ("Invalid form type"); }
 		};
 };
 
