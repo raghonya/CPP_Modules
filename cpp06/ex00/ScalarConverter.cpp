@@ -44,8 +44,6 @@ void	checkValidStr(const std::string& str)
 
 void	parse_str(std::string& str)
 {
-	// STEX GALIS A DEMIC VERJIC SPACE ER HANAC STRING
-
 	int	i, dotCount = 0;
 	
 	for (i = 0; str[i]; ++i)
@@ -72,17 +70,8 @@ void	parse_str(std::string& str)
 void	print_converts(const std::string& str)
 {
 	int		intNum;
-	// float	floatNum;
 
 	sscanf(str.c_str(), "%d", &intNum);
-	// floatNum = atof(str.c_str());
-	// std::cout << "floatnum: " << floatNum << std::endl;
-	
-	// std::cout << "patrasti string: `" << str << "`" << std::endl;
-	// PARSE ARAC GALIS A MAXIMUM 1 KET UNECOX STRING
-
-	// BAREROV DEPQER
-
 	if (strchr(str.c_str(), 'n'))
 	{
 
@@ -102,11 +91,9 @@ void	print_converts(const std::string& str)
 		else
 			std::cout << str;
 		std::cout << std::endl;
-		//  << str << std::endl;
 	}
 	else
 	{
-
 		// Char
 		std::cout << "Char: ";
 		if (intNum < 32 || intNum > 127)
@@ -129,12 +116,7 @@ void	print_converts(const std::string& str)
 			std::cout << str;
 		std::cout << std::endl;
 
-		// // Double
-		// std::cout << "Double: " << floatNum;
-		// if (str.find('.') == str.npos)
-		// 	std::cout << ".0";
-		// std::cout << std::endl;
-
+		// Double
 		std::cout << "Double: ";
 		if (!strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
 			std::cout << str << ".0";
@@ -145,8 +127,6 @@ void	print_converts(const std::string& str)
 		else
 			std::cout << str.substr(0, str.length() - 1);
 		std::cout << std::endl;
-
-
 	}
 }
 
@@ -158,8 +138,6 @@ void	ScalarConverter::convert(const std::string& str)
 		return ;
 	}
 	std::string	trimmed = strtrim(str);
-	// std::cout << "New str trimmed: `" << trimmed << "`" << std::endl;
 	parse_str(trimmed);
 	print_converts(trimmed);
-	// if (str.back() == 'f')
 }
