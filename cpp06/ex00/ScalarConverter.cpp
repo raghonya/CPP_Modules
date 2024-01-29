@@ -1,80 +1,79 @@
 #include "ScalarConverter.hpp"
-#include <cstring>
-#include <cstdio>
-#include <cstdlib>
-
-std::string	strtrim(const std::string& str)
+#include <cerrno>
+#include <sstream>
+void	printNumbers(const std::string& str)
 {
-	std::string	trimmed;
-	int start = 0, end = str.length() - 1;
-
-	for (int i = 0; str[i] == ' ' || str[i] == '\t' || str[i] == '\n'; ++i)
-		start = i + 1;
-	for (int i = str.length() - 1; str[i] == ' ' || str[i] == '\t' || str[i] == '\n'; --i)
-		end = i - 1;
-	for (int i = start; i <= end; ++i)
-		trimmed.push_back(str[i]);
-	return (trimmed);
-}
-
-void	checkValidStr(const std::string& str)
-{
-	int i;
-	int	digitCount = 0;
-	// int	fCount = 0;
-	std::string	inputs[8] = {"inf", "-inf", "+inf", "inff", "-inff", "+inff", "nan", "nanf"};
+	int	intNum = 0, overflow;
+	float	floatNum = atof(str.c_str());
 	
-	// Member of array `inputs`
-	for (i = 0; str[i]; ++i) if (isdigit(str[i])) digitCount++;
-	for (i = 0; digitCount == 0 && i < 8; ++i)
-		if (str == inputs[i])
-			break ;
-	if (i == 8)
-		throw ScalarConverter::InvalidInputException();
-	// Not a member of array `inputs`
-	if (digitCount > 0)
-	{
-		for (i = 0; str[i]; ++i)
-			if (strchr("ina", str[i]) || (str[i] == 'f' && i != int(str.length() - 1)))
-				throw ScalarConverter::InvalidInputException();
-		if (strchr("ina", str[str.length() - 1]))
-			throw ScalarConverter::InvalidInputException();
-	}
+	// For float and double types
+	std::stringstream ss;
+	ss << floatNum << std::endl;
+	std::string	fof = ss.str();
+	ss.str(std::string());
+
+	overflow = stoiHandmade(str, intNum);
+	// Char
+	std::cout << "Char: ";
+	if ((intNum >= -128 && intNum < 32) || intNum == 127)
+		std::cout << "Non-displayable";
+	else if (intNum < -128 || intNum > 127)
+		std::cout << "Overflow";
+	else
+		std::cout << "'" << static_cast<char>(intNum) << "'";
+	std::cout << std::endl;
+
+	// Int
+	std::cout << "Int: ";
+	if (overflow)
+		std::cout << "Overflow";
+	else
+		std::cout << intNum;
+	std::cout << std::endl;
+
+	// Float
+	std::cout << "Float: ";
+
+	/*
+	ete ket chka f chka : 222
+	ete ket chka f ka : 222
+	ete .0 ka f chka : 222
+	ete .0 ka f ka : 222
+	ete ket ka f ka : 222.4
+	ete ket ka f chka : 222.4
+	*/
+
+	std::cout << floatNum;
+	if (!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+		std::cout << ".0f";
+	else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+		std::cout << "f";
+	std::cout << std::endl;
+
+	// Double
+	std::cout << "Double: ";
+	std::cout << static_cast<double>(floatNum);
+	if (!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+		std::cout << ".0";
+	// else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+	// 	std::cout floatNum;
+	// if (overflow)
+	// 	std::cout << "Overflow";
+	// else if (!strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
+	// 	std::cout << str << ".0";
+	// else if (!strchr(str.c_str(), '.') && str[str.length() - 1] == 'f')
+	// 	std::cout << str.substr(0, str.length() - 1) << ".0";
+	// else if (strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
+	// 	std::cout << str;
+	// else
+	// 	std::cout << str.substr(0, str.length() - 1);
+	std::cout << std::endl;
 }
 
-void	parse_str(std::string& str)
+void	printConverts(const std::string& str)
 {
-	int	i, dotCount = 0;
-	
-	for (i = 0; str[i]; ++i)
-	{
-		if (str[i] == '.')
-		{
-			if (!str[i + 1] || str[i + 1] == 'f')
-				throw ScalarConverter::InvalidInputException();
-			if (i == 0 || !std::isdigit(str[i - 1]))
-				str.insert(i++, "0");
-			dotCount++;
-		}
-		if ((str[i] != '+' && str[i] != '-' && str[i] != '.' \
-		&& !strchr("infa", str[i]) && !std::isdigit(str[i])) \
-		|| ((str[i] == '+' || str[i] == '-') && i != 0) || dotCount > 1)
-		{
-			std::cout << "Error symbol " << str[i] << std::endl;
-			throw ScalarConverter::InvalidInputException();
-		}
-	}
-	checkValidStr(str);
-}
-
-void	print_converts(const std::string& str)
-{
-	int		intNum;
-
-	sscanf(str.c_str(), "%d", &intNum);
 	if (strchr(str.c_str(), 'n'))
 	{
-
 		std::cout << "Char: Impossible" << std::endl;
 		std::cout << "Int: Impossible" << std::endl;
 
@@ -94,50 +93,19 @@ void	print_converts(const std::string& str)
 	}
 	else
 	{
-		// Char
-		std::cout << "Char: ";
-		if (intNum < 32 || intNum > 127)
-			std::cout << "Non-displayable" << std::endl;
-		else
-			std::cout << "'" << (char)intNum << "'" << std::endl;
-
-		// Int
-		std::cout << "Int: " << intNum << std::endl;
-
-		// Float
-		std::cout << "Float: ";
-		if (!strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-			std::cout << str << ".0f";
-		else if (!strchr(str.c_str(), '.') && str[str.length() - 1] == 'f')
-			std::cout << str.substr(0, str.length() - 1) << ".0f";
-		else if (strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-			std::cout << str << 'f';
-		else 
-			std::cout << str;
-		std::cout << std::endl;
-
-		// Double
-		std::cout << "Double: ";
-		if (!strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-			std::cout << str << ".0";
-		else if (!strchr(str.c_str(), '.') && str[str.length() - 1] == 'f')
-			std::cout << str.substr(0, str.length() - 1) << ".0";
-		else if (strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-			std::cout << str;
-		else
-			std::cout << str.substr(0, str.length() - 1);
-		std::cout << std::endl;
+		printNumbers(str);
 	}
 }
 
 void	ScalarConverter::convert(const std::string& str)
 {
 	if (!str[0])
-	{
-		std::cout << "Empty string, ..." << std::endl;
-		return ;
-	}
-	std::string	trimmed = strtrim(str);
-	parse_str(trimmed);
-	print_converts(trimmed);
+		throw ScalarConverter::InvalidInputException("Empty input");
+	std::string	trimmed = strtrim(str, " \t\n");
+	if (strchr(trimmed.c_str(), ' ') || strchr(trimmed.c_str(), '\t')\
+	|| strchr(trimmed.c_str(), '\n') || checkSign(trimmed))
+		throw ScalarConverter::InvalidInputException("Invalid input type");
+	trimmed = strtrim(trimmed, "0");
+	parseStr(trimmed);
+	printConverts(trimmed);
 }
