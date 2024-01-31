@@ -1,6 +1,18 @@
 #include "ScalarConverter.hpp"
-#include <cerrno>
 #include <sstream>
+
+bool	checkAfterDot(const std::string& str)
+{
+	std::string	check = strchr(str.c_str(), '.');
+	int			zeroCount = 0;
+	int 		i = 1;
+
+	if (check.c_str() == NULL) return (false);
+	for (; check[i] && check[i] == '0'; ++i)
+		zeroCount++;
+	return (!isdigit(check[i]) || zeroCount > 2);
+}
+
 void	printNumbers(const std::string& str)
 {
 	int	intNum = 0, overflow;
@@ -44,17 +56,20 @@ void	printNumbers(const std::string& str)
 	*/
 
 	std::cout << floatNum;
-	if (!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
-		std::cout << ".0f";
-	else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
-		std::cout << "f";
-	std::cout << std::endl;
+	if ((!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e')) \
+	|| checkAfterDot(str))
+		std::cout << ".0";
+	// else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+	// 	std::cout << "f";
+	std::cout << "f" << std::endl;
 
 	// Double
 	std::cout << "Double: ";
 	std::cout << static_cast<double>(floatNum);
-	if (!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
+	if ((!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e')) \
+	|| checkAfterDot(str))
 		std::cout << ".0";
+
 	// else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
 	// 	std::cout floatNum;
 	// if (overflow)
