@@ -16,9 +16,9 @@ bool	checkAfterDot(const std::string& str)
 void	printNumbers(const std::string& str)
 {
 	int	intNum = 0, overflow;
-	float	floatNum = atof(str.c_str());
 	
 	// For float and double types
+	float	floatNum = atof(str.c_str());
 	std::stringstream ss;
 	ss << floatNum << std::endl;
 	std::string	fof = ss.str();
@@ -45,22 +45,10 @@ void	printNumbers(const std::string& str)
 
 	// Float
 	std::cout << "Float: ";
-
-	/*
-	ete ket chka f chka : 222
-	ete ket chka f ka : 222
-	ete .0 ka f chka : 222
-	ete .0 ka f ka : 222
-	ete ket ka f ka : 222.4
-	ete ket ka f chka : 222.4
-	*/
-
 	std::cout << floatNum;
 	if ((!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e')) \
 	|| checkAfterDot(str))
 		std::cout << ".0";
-	// else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
-	// 	std::cout << "f";
 	std::cout << "f" << std::endl;
 
 	// Double
@@ -69,19 +57,6 @@ void	printNumbers(const std::string& str)
 	if ((!strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e')) \
 	|| checkAfterDot(str))
 		std::cout << ".0";
-
-	// else if (strchr(str.c_str(), '.') && fof != "inf" && !strchr(fof.c_str(), 'e'))
-	// 	std::cout floatNum;
-	// if (overflow)
-	// 	std::cout << "Overflow";
-	// else if (!strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-	// 	std::cout << str << ".0";
-	// else if (!strchr(str.c_str(), '.') && str[str.length() - 1] == 'f')
-	// 	std::cout << str.substr(0, str.length() - 1) << ".0";
-	// else if (strchr(str.c_str(), '.') && str[str.length() - 1] != 'f')
-	// 	std::cout << str;
-	// else
-	// 	std::cout << str.substr(0, str.length() - 1);
 	std::cout << std::endl;
 }
 
