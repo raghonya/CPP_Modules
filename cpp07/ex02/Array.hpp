@@ -11,12 +11,12 @@ class Array
 		unsigned int	capacity;
 	public:
 		Array();
-		Array(unsigned int n);
 		Array(const Array& other);
 		Array&	operator=(const Array& other);
-		~Array() { if (this->arr) delete[] arr; }
+		~Array();
 		
-		T&	operator[](unsigned int pos) const;
+		Array(unsigned int n);
+		T&				operator[](unsigned int pos) const;
 		unsigned int	size() const;
 
 };
@@ -29,6 +29,8 @@ Array<T>::Array(unsigned int n)
 {
 	this->arr = new T[n]; 
 	this->capacity = n;
+	for (unsigned int i = 0; i < this->capacity; ++i)
+		arr[i] = static_cast<T>(0);
 }
 
 template <typename T>
@@ -57,11 +59,14 @@ template <typename T>
 T&	Array<T>::operator[](unsigned int pos) const
 {
 	if (pos >= this->capacity)
-		throw std::out_of_range("Out of range");
+		throw std::out_of_range("Index out of range");
 	return (this->arr[pos]);
 }
 
 template <typename T>
 unsigned int	Array<T>::size() const { return (this->capacity); }
+
+template <typename T>
+Array<T>::~Array() { if (this->arr) delete[] arr; }
 
 #endif
