@@ -16,6 +16,11 @@ int	main()
 	identify(*alo);
 	delete alo;
 
+	alo = new Base();
+	identify(alo);
+	identify(*alo);
+	delete alo;
+
 	alo = generate();
 	identify(alo);
 	identify(*alo);

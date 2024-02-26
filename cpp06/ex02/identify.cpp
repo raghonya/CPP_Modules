@@ -18,31 +18,32 @@ Base*	generate( void )
 
 void	identify(Base* p)
 {
-	std::string	type[3] = {"A", "B", "C"};
-	Base	*derivedClasses[3] = 
+	std::string	type[4] = {"A", "B", "C", "Base"};
+	Base	*derivedClasses[4] = 
 	{
 		dynamic_cast<A*>(p),
 		dynamic_cast<B*>(p),
-		dynamic_cast<C*>(p)
+		dynamic_cast<C*>(p),
+		dynamic_cast<Base*>(p)
 	};
 
 	int i = 0;
-	for (; i < 3 && !derivedClasses[i]; ++i) ;
+	for (; i < 4 && !derivedClasses[i]; ++i) ;
 	std::cout << "The actual type of object is '" << type[i] << "'" << std::endl;
-		
 }
 
 void	identify(Base& p)
 {
-	std::string	type[3] = {"A", "B", "C"};
-	Base	*derivedClasses[3] = 
+	std::string	type[4] = {"A", "B", "C", "Base"};
+	Base	*derivedClasses[4] = 
 	{
 		dynamic_cast<A*>(&p),
 		dynamic_cast<B*>(&p),
-		dynamic_cast<C*>(&p)
+		dynamic_cast<C*>(&p),
+		dynamic_cast<Base*>(&p)
 	};
 
 	int i = 0;
-	for (; i < 3 && !derivedClasses[i]; ++i) ;
+	for (; i < 4 && !derivedClasses[i]; ++i) ;
 	std::cout << "The actual type of object is '" << type[i] << "'" << std::endl;
 }
