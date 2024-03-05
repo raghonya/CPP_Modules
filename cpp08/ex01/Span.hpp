@@ -20,8 +20,8 @@ class Span
 		int		longestSpan() const;
 		int		shortestSpan() const;
 
-		template <typename T> 
-		void	addNumberIterator(T begin, T end);
+		template <typename Iter> 
+		void	addNumberIterator(Iter begin, Iter end);
 };
 
 template <typename Iter>

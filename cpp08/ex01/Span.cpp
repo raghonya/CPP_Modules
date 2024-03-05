@@ -1,6 +1,7 @@
 #include "Span.hpp"
 #include <cmath>
 #include <climits>
+#include <algorithm>
 
 Span::Span() : N(0) {}
 
@@ -8,14 +9,13 @@ Span::Span(unsigned int N) : N(N) {}
 
 Span::Span(const Span& other)
 {
-	this->arr = other.arr;
 	this->N = other.N;
+	this->arr = other.arr;
 }
 
 Span& Span::operator=(const Span& other)
 {
-	if (this->arr == other.arr)
-		return (*this);
+	this->N = other.N;
 	this->arr = other.arr;
 	return (*this);
 }
@@ -31,26 +31,24 @@ void	Span::addNumber(const int& num)
 
 int	Span::longestSpan() const
 {
-	if (this->N <= 1)
+	if (this->arr.size() <= 1)
 		throw std::length_error("Cannot find a span");
-
-	int	maxSpan = 0;
-	for (unsigned int i = 0; i < arr.size(); ++i)
-		for (unsigned int j = i + 1; j < arr.size(); ++j)
-			if (abs(arr[i] - arr[j]) > maxSpan)
-				maxSpan = abs(arr[i] - arr[j]);
-	return (maxSpan);
+	return (*std::max_element(arr.begin(), arr.end()) \
+	- *std::min_element(arr.begin(), arr.end()));
 }
 
 int	Span::shortestSpan() const
 {
-	if (this->N <= 1)
+	if (this->arr.size() <= 1)
 		throw std::length_error("Cannot find a span");
 
-	int	minSpan = INT_MAX;
-	for (unsigned int i = 0; i < arr.size(); ++i)
-		for (unsigned int j = i + 1; j < arr.size(); ++j)
-			if (abs(arr[i] - arr[j]) < minSpan)
-				minSpan = abs(arr[i] - arr[j]);
+	std::vector<int>	copy(arr);
+	int					minSpan;
+
+	std::sort(copy.begin(), copy.end());
+	minSpan = copy[1] - copy[0];
+	for (unsigned int i = 2; i < copy.size(); ++i)
+		minSpan = (copy[i] - copy[i - 1] < minSpan ? \
+		copy[i] - copy[i - 1] : minSpan);
 	return (minSpan);
 }
