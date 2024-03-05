@@ -35,10 +35,6 @@ int main()
 		sp.addNumber(11);
 		std::cout << sp.shortestSpan() << std::endl;
 		std::cout << sp.longestSpan() << std::endl;
-
-		Span	sp3(sp);
-
-		sp3 = sp2;
 	}
 	catch(std::exception& e)
 	{
