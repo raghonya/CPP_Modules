@@ -12,8 +12,15 @@ int	main(int argc, char **argv)
 	{
 		RPN		*calculator = new RPN();
 
-		std::cout << calculator->operation((std::string)argv[1]) << std::endl;
-
+		try
+		{
+			calculator->parse((std::string)argv[1]);
+			std::cout << calculator->operation((std::string)argv[1]) << std::endl;
+		}
+		catch(const std::exception& e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 		delete calculator;
 	}
 	catch(const std::exception& e)

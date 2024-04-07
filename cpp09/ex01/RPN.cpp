@@ -6,11 +6,26 @@ RPN::RPN(const RPN& other) { this->arr = other.arr; }
 RPN&	RPN::operator=(const RPN& other) { this->arr = other.arr; return (*this); }
 RPN::~RPN() {}
 
+// "4 8 + 2 - 6 7 *"
+void	RPN::parse(const std::string& str)
+{
+	for (size_t i = 0; i < str.length(); ++i)
+	{
+		if (!std::isdigit(str[i]) && str[i] != ' ' && str[i] != '+' \
+		&& str[i] != '-' && str[i] != '*' && str[i] != '/')
+		{
+			throw std::invalid_argument("Undefined symbols in operation");
+		}
+		if (str[i + 1] && str[i] != '0' && std::isdigit(str[i]) && std::isdigit(str[i + 1]))
+			throw std::invalid_argument\
+			("The numbers used as arguments will always be less than 10. ");
+	}
+}
+
 int	RPN::operation(std::string str)
 {
 	int			result = 0;
 
-	std::cout << (int)'+' << " " << (int)'-' << " " << (int)'/' << " " << (int)'*' << std::endl;
 	for	(size_t index = str.find_first_not_of(' '); \
 		index != str.npos; index = str.find_first_not_of(' '))
 	{
@@ -23,6 +38,7 @@ int	RPN::operation(std::string str)
 			int	second = arr.top();
 			arr.pop();
 			int	first = arr.top();
+			arr.pop();
 			// PARSE ANEL STRINGY VOR URISH BAN CHGA
 			std::cout << first << str[index] << second << std::endl;
 			switch(str[index])

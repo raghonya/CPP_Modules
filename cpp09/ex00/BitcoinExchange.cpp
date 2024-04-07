@@ -4,11 +4,24 @@
 #include <cstring>
 #include <cstdlib>
 
+BitcoinExchange::BitcoinExchange() {}
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)
+{
+	this->database = copy.database;
+}
+BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
+{
+	this->database = other.database;
+	return (*this);
+}
+
+BitcoinExchange::~BitcoinExchange() {}
+
 std::string	strtrim(std::string str)
 {
-    str.erase(str.find_last_not_of("\t\n ") + 1);
-    str.erase(0, str.find_first_not_of("\t\n "));
-    return (str);
+	str.erase(str.find_last_not_of("\t\n ") + 1);
+	str.erase(0, str.find_first_not_of("\t\n "));
+	return (str);
 }
 
 bool	isdigitStr(const std::string& str)

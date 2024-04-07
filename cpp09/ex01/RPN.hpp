@@ -10,12 +10,12 @@ class RPN
 		std::stack<int>		arr;
 	public:
 		RPN();
-		RPN(unsigned int N);
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& other);
 		~RPN();
 	public:
-		int	operation(std::string	str);
+		int		operation(std::string	str);
+		void	parse(const std::string& str);
 
 };
 

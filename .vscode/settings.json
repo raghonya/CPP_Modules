@@ -73,7 +73,8 @@
 		"fstream": "cpp",
 		"stack": "cpp",
 		"__functional_03": "cpp",
-		"list": "cpp"
+		"list": "cpp",
+		"map": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "enabled"
 }
