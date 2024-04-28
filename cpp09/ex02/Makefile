@@ -1,4 +1,4 @@
-NAME		=	mutantstack
+NAME		=	PMergeMe
 
 CXX			=	c++
 

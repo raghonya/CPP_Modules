@@ -1,30 +1,31 @@
-#include "MutantStack.hpp"
+#include "PmergeMe.hpp"
 
-int main()
+bool	isdigitStr(const std::string& str)
 {
-	std::stack<int> st;
+	for (size_t i = 0; i < str.length(); ++i)
+		if (!std::isdigit(str[i]))
+			return (false);
+	return (true);
+}
 
-	MutantStack<int> mstack;
-
-	mstack.push(5);
-	mstack.push(17);
-	std::cout << mstack.top() << std::endl;
-	mstack.pop();
-	std::cout << mstack.size() << std::endl;
-	mstack.push(3);
-	mstack.push(5);
-	mstack.push(737);
-	//[...]
-	mstack.push(0);
-	MutantStack<int>::iterator it = mstack.begin();
-	MutantStack<int>::iterator ite = mstack.end();
-	++it;
-	--it;
-	while (it != ite)
+int main(int argc, char **argv)
+{
+	if (argc < 2)
 	{
-		std::cout << *it << std::endl;
-		++it;
+		std::cout << "Invalid arguement count" << std::endl;
+		return (1);
 	}
-	std::stack<int> s(mstack);
-	return 0;
+	try
+	{
+		PmergeMe	algo;
+
+		algo.parseInput(argv, argc - 1);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
+
+	return (0);
 }
