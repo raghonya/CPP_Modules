@@ -5,6 +5,8 @@
 #include <vector>
 #include <deque>
 
+typedef std::invalid_argument invalid_argument;
+
 class PmergeMe
 {
 	private:

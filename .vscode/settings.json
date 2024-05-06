@@ -74,7 +74,8 @@
 		"stack": "cpp",
 		"__functional_03": "cpp",
 		"list": "cpp",
-		"map": "cpp"
+		"map": "cpp",
+		"cinttypes": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "enabled"
 }

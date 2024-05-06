@@ -24,10 +24,10 @@ void	PmergeMe::parseInput(char **input, int length)
 	for (int i = 0; i < length; ++i)
 	{
 		if (!isdigitStr(input[i]))
-			throw std::invalid_argument("Only digits");
+			throw invalid_argument("Only digits");
 		tmp = std::atoi(input[i]);
 		if (tmp <= 0)
-			throw std::invalid_argument("Only positive integers");
+			throw invalid_argument("Only positive integers");
 		vect.push_back(tmp);
 		deq.push_back(tmp);
 	}

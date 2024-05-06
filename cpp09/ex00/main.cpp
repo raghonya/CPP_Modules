@@ -1,8 +1,22 @@
 #include "BitcoinExchange.hpp"
 #include <fstream>
-#include <map>
 
-int main(int argc, char **argv)
+std::string	strtrim(std::string str)
+{
+	str.erase(str.find_last_not_of("\t\n ") + 1);
+	str.erase(0, str.find_first_not_of("\t\n "));
+	return (str);
+}
+
+bool	isdigitStr(const std::string& str)
+{
+	for (size_t i = 0; i < str.length(); ++i)
+		if (!std::isdigit(str[i]))
+			return (false);
+	return (true);
+}
+
+bool	argumentCheck(int argc)
 {
 	if (argc != 3)
 	{
@@ -12,22 +26,28 @@ int main(int argc, char **argv)
 		std::cout << "`File in format .txt`" << std::endl;
 		std::cout << "Database file format: `data , price`" <<std::endl;
 		std::cout << "Input file format: `data | value`" <<std::endl;
-		return (1);
+		return (true);
 	}
+	return (false);
+}
+
+int main(int argc, char **argv)
+{
+	if (argumentCheck(argc))
+		return (1);
 	try
 	{
-		std::map<std::string, float>	database;
+		BitcoinExchange					btc;
 		std::ifstream					inputFileStream;
-		std::string						inputLine;
 
-		databaseParse(argv[1], database);
-
-		fileFormatCheck(argv[2], ".txt");
+		btc.databaseParse(argv[1]);
+		btc.fileFormatCheck(argv[2], ".txt");
 		inputFileStream.open(argv[2]);
 		if (inputFileStream.fail())
 			throw std::invalid_argument("Input file doesnt exist");
-		printValues(inputFileStream, database);
+		btc.printValues(inputFileStream);
 	}
 	catch (const std::exception& e) { std::cout << e.what() << std::endl; }
+	return (0);
 
 }

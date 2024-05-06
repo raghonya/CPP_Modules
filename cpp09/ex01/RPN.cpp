@@ -22,9 +22,9 @@ void	RPN::parse(const std::string& str)
 	}
 }
 
-int	RPN::operation(std::string str)
+double	RPN::operation(std::string str)
 {
-	int			result = 0;
+	double	result = 0.0;
 
 	for	(size_t index = str.find_first_not_of(' '); \
 		index != str.npos; index = str.find_first_not_of(' '))
@@ -35,9 +35,9 @@ int	RPN::operation(std::string str)
 		{
 			if (arr.size() < 2)
 				throw std::invalid_argument("Invalid input");
-			int	second = arr.top();
+			double	second = arr.top();
 			arr.pop();
-			int	first = arr.top();
+			double	first = arr.top();
 			arr.pop();
 			// PARSE ANEL STRINGY VOR URISH BAN CHGA
 			std::cout << first << str[index] << second << std::endl;
@@ -62,6 +62,8 @@ int	RPN::operation(std::string str)
 		}
 		str = str.substr(index + 1);
 	}
+	if (arr.size() > 1)
+		throw (std::invalid_argument("Invalid argument"));
 
 	return (result);
 }

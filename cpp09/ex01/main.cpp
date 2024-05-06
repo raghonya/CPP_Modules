@@ -14,8 +14,8 @@ int	main(int argc, char **argv)
 
 		try
 		{
-			calculator->parse((std::string)argv[1]);
-			std::cout << calculator->operation((std::string)argv[1]) << std::endl;
+			calculator->parse(argv[1]);
+			std::cout << calculator->operation(argv[1]) << std::endl;
 		}
 		catch(const std::exception& e)
 		{

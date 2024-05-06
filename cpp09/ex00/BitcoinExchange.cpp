@@ -17,22 +17,8 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
 
 BitcoinExchange::~BitcoinExchange() {}
 
-std::string	strtrim(std::string str)
-{
-	str.erase(str.find_last_not_of("\t\n ") + 1);
-	str.erase(0, str.find_first_not_of("\t\n "));
-	return (str);
-}
-
-bool	isdigitStr(const std::string& str)
-{
-	for (size_t i = 0; i < str.length(); ++i)
-		if (!std::isdigit(str[i]))
-			return (false);
-	return (true);
-}
-
-void	fileFormatCheck(const char *filename, const char *correctFormat)
+void	BitcoinExchange::fileFormatCheck\
+(const char *filename, const char *correctFormat)
 {
 	const char	*fileFormat = strrchr(filename, '.');
 
@@ -42,7 +28,8 @@ void	fileFormatCheck(const char *filename, const char *correctFormat)
 		", needs format " + (std::string)correctFormat);
 }
 
-void	daysInMonthCheck(const std::string &str, int year, int month)
+void	BitcoinExchange::daysInMonthCheck\
+(const std::string &str, int year, int month)
 {
 	int	day = std::atoi(str.c_str());
 
@@ -66,19 +53,18 @@ void	daysInMonthCheck(const std::string &str, int year, int month)
 	}
 }
 
-void	checkDate(const std::string& date)
+void	BitcoinExchange::checkDate(const std::string& date)
 {
 	std::stringstream	dateParse(date);
 	std::string			part;
 	int					year = 0, month = 0;
 	int					iter = 0;
 
-	if (!std::isdigit(date[date.length() - 1]))
+	if (!date[0] || !std::isdigit(date[date.length() - 1]))
 		throw std::invalid_argument("Invalid date type");
 	while (getline(dateParse, part, '-'))
 	{
 		++iter;
-		std::cout << "hehe " << part << std::endl;
 		if (!part[0] || !isdigitStr(part))
 			throw std::invalid_argument("Invalid date type");
 		switch (iter)
@@ -100,13 +86,14 @@ void	checkDate(const std::string& date)
 
 }
 
-void	checkValue(const std::string &value, bool isDatabase)
+void	BitcoinExchange::checkValue\
+(const std::string &value, bool isDatabase)
 {
 	std::stringstream	priceParse(value);
 	std::string			part;
 	int					iter = 0;
 
-	if (isDatabase && std::atof(value.c_str()) < 0.0)
+	if (!value[0] || (isDatabase && std::atof(value.c_str()) < 0.0))
 		throw std::invalid_argument("Invalid BTC value in data.csv file, 0 <= value");
 	else if (!isDatabase && \
 			(std::atof(value.c_str()) < 0.0 || std::atof(value.c_str()) > 1000.0))
@@ -123,7 +110,7 @@ void	checkValue(const std::string &value, bool isDatabase)
 
 }
 
-void	databaseParse(char *filename, std::map<std::string, float> &database)
+void	BitcoinExchange::databaseParse(char *filename)
 {
 	std::ifstream		dataFileStream(filename);
 	std::string			line;
@@ -156,12 +143,12 @@ void	databaseParse(char *filename, std::map<std::string, float> &database)
 		checkValue(value, true);
 
 		// INSERT TO DATABASE
-		database.insert(std::pair<std::string, float>(date, std::atof(value.c_str())));
+		this->database.insert(std::pair<std::string, float>(date, std::atof(value.c_str())));
 	}
 }
 
-void	parseInputFile(	const std::string inputLine, \
-						std::string& inputDate, std::string& inputValue)
+void	BitcoinExchange::parseInputFile\
+(const std::string inputLine, std::string& inputDate, std::string& inputValue)
 {
 	// DATE
 	size_t	index = inputLine.find_first_of('|');
@@ -177,11 +164,11 @@ void	parseInputFile(	const std::string inputLine, \
 	index = inputLine.find_last_of('|');
 	inputValue = inputLine.substr(index + 1);
 	inputValue = strtrim(inputValue);
+	// std::cout << "`" << inputValue << "`" << std::endl;
 	checkValue(inputValue, false);
 }
 
-void	printValues(std::ifstream &inputFileStream, \
-					std::map<std::string, float>& database)
+void	BitcoinExchange::printValues(std::ifstream &inputFileStream)
 {
 	std::string	inputLine, inputDate, inputValue;
 	std::map<std::string, float>::iterator iter;
@@ -193,7 +180,7 @@ void	printValues(std::ifstream &inputFileStream, \
 		{
 			continueLoop = false;
 			parseInputFile(inputLine, inputDate, inputValue);
-			for (iter = database.begin(); iter != database.end(); ++iter)
+			for (iter = this->database.begin(); iter != this->database.end(); ++iter)
 			{
 				if (iter->first == inputDate)
 				{
@@ -204,10 +191,10 @@ void	printValues(std::ifstream &inputFileStream, \
 			}
 			if (!continueLoop)
 			{
-				for (iter = database.begin(); iter != database.end(); ++iter)
+				for (iter = this->database.begin(); iter != this->database.end(); ++iter)
 					if (iter->first > inputDate)
 						break ;
-				if (iter == database.begin())
+				if (iter == this->database.begin())
 					throw std::invalid_argument("Invalid date in input file");
 
 				std::cout << inputDate << " => " << inputValue << " = " << \

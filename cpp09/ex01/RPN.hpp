@@ -7,15 +7,15 @@
 class RPN
 {
 	private:
-		std::stack<int>		arr;
+		std::stack<double>		arr;
 	public:
 		RPN();
 		RPN(const RPN& other);
 		RPN& operator=(const RPN& other);
 		~RPN();
 	public:
-		int		operation(std::string	str);
-		void	parse(const std::string& str);
+		double		operation(std::string	str);
+		void		parse(const std::string& str);
 
 };
 
