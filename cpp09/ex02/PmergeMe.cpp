@@ -32,3 +32,8 @@ void	PmergeMe::parseInput(char **input, int length)
 		deq.push_back(tmp);
 	}
 }
+
+void	sortVector()
+{
+	
+}

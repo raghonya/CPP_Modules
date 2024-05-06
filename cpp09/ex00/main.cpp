@@ -37,8 +37,8 @@ int main(int argc, char **argv)
 		return (1);
 	try
 	{
-		BitcoinExchange					btc;
-		std::ifstream					inputFileStream;
+		BitcoinExchange	btc;
+		std::ifstream	inputFileStream;
 
 		btc.databaseParse(argv[1]);
 		btc.fileFormatCheck(argv[2], ".txt");
