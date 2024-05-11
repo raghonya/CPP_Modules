@@ -5,7 +5,10 @@
 #include <vector>
 #include <deque>
 
-typedef std::invalid_argument invalid_argument;
+typedef std::invalid_argument		invalid_argument;
+typedef std::vector<int>::iterator	iterator;
+typedef std::vector<int>			vector;
+typedef std::deque<int>				deque;
 
 class PmergeMe
 {
@@ -19,8 +22,9 @@ class PmergeMe
 		~PmergeMe();
 	public:
 		void	parseInput(char **input, int length);
+		void	sortVector();
 };
 
-bool	isdigitStr(const char *str);
+bool	isdigitStr(const std::string &str);
 
 #endif

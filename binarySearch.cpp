@@ -32,14 +32,14 @@ int	main()
 {
 	std::vector<int> arr;
 
-	arr.push_back(1);
-	arr.push_back(4);
-	arr.push_back(8);
-	arr.push_back(11);
-	arr.push_back(25);
+	// arr.push_back(1);
+	// arr.push_back(4);
+	// arr.push_back(8);
+	// arr.push_back(11);
+	// arr.push_back(25);
 	arr.push_back(28);
-	arr.push_back(41);
-	arr.push_back(43);
+	// arr.push_back(41);
+	// arr.push_back(43);
 
 	std::vector<int> insert;
 
@@ -49,7 +49,7 @@ int	main()
 	insert.push_back(200);
 	insert.push_back(39);
 	insert.push_back(7);
-	insert.push_back(36);
+	insert.push_back(0);
 	insert.push_back(4);
 	insert.push_back(4);
 	insert.push_back(4);

@@ -19,7 +19,8 @@ int main(int argc, char **argv)
 	{
 		PmergeMe	algo;
 
-		algo.parseInput(argv, argc - 1);
+		algo.parseInput(argv, argc);
+		algo.sortVector();
 	}
 	catch(const std::exception& e)
 	{
