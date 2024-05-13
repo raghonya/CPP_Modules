@@ -1,5 +1,6 @@
 #include "PmergeMe.hpp"
 #include <cstdlib>
+#include <cmath>
 
 void	print(std::vector<int> arr)
 {
@@ -39,9 +40,9 @@ void	PmergeMe::parseInput(char **input, int length)
 	}
 }
 
-void	intoPairs(vector &arr, vector &sortLarges, vector &smalls)
+void	intoPairs(vector &arr, vector &smalls)
 {
-	std::vector<int>	tmp;
+	std::vector<int>	sortLarges;
 	int					n = arr.size();
 
 	for (int i = 0; i < n; i += 2)
@@ -54,57 +55,65 @@ void	intoPairs(vector &arr, vector &sortLarges, vector &smalls)
 		std::cout << "Erasing " << arr[i + 1] << std::endl;
 		smalls.push_back(arr[i]);
 		sortLarges.push_back(arr[i + 1]);
-		// arr.erase(arr.begin() + i + 1);
 	}
-	// print(arr);
-	// print(sortLarges);
+	arr = sortLarges;
 
 }
 
-void	merge(vector &arr, int beg, int mid, int end)
+void	insert(vector &arr, vector smalls)
 {
-	vector	right, left;
+	vector	binarySearchArr;
+	int		powerOf2 = 2;
 
-	for (int i = 0; i < mid - beg + 1; ++i)
-		left.push_back(arr[beg + i]);
-	for (int i = 0; i < end - mid; ++i)
-		right.push_back(arr[mid + i + 1]);
-	size_t i = 0, j = 0;
-	while (i < left.size() && j < right.size())
+	iterator it = smalls.begin();
+
+	for (int i = 0; i < smalls.size(); ++i)
 	{
-		if (left[i] < right[j])
-			arr[beg++] = left[i++];
-		else
-			arr[beg++] = right[j++];
+		it += powerOf2;
+		for (int j = 0; j < powerOf2 && j < smalls.size(); ++j)
+		{
+			binarySearchArr.push_back(*(it - j - 1));
+		}
+		powerOf2 = pow(2, i + 2) - powerOf2;
 	}
-	while (i < left.size())
-		arr[beg++] = left[i++];
-	while (j < right.size())
-		arr[beg++] = right[j++];
+	std::cout << "Printing binsrch arr" << std::endl;
+	print(binarySearchArr);
 }
 
-void	slice(vector &arr, int beg, int end)
+void	notRealMerge(vector &arr)
 {
-	if (beg < end)
+	std::vector<int>	smalls;
+	// bool	even = arr.size() % 2 == 0 ? true : false;
+
+	if (arr.size() > 3)
 	{
-		int	mid = (beg + end) / 2;
-		slice(arr, beg, mid);
-		slice(arr, mid + 1, end);
-		merge(arr, beg, mid, end);
+		intoPairs(arr, smalls);
+		notRealMerge(arr);
+		arr.insert(arr.begin(), smalls[0]);
+		insert(arr, smalls);
 	}
+	else
+	{
+		if (arr[0] > arr[1])
+			std::swap(arr[0], arr[1]);
+		if (arr.size() == 3)
+		{
+			smalls.push_back(arr[2]);
+			arr.erase(arr.end() - 1);
+			insert(arr, smalls);
+		}
+
+	}
+
 }
 
 void	PmergeMe::sortVector()
 {
-	std::vector<int> sortLarges, smalls;
-	
-	intoPairs(this->vect, sortLarges, smalls);
-	slice(sortLarges, 0, sortLarges.size() - 1);
+	notRealMerge(this->vect);
+	// slice(sortLarges, 0, sortLarges.size() - 1);
 	std::cout << "vect====================" << std::endl;
 	print(this->vect);
 	std::cout << "vect end====================" << std::endl;
-	
-	sortLarges.insert(sortLarges.begin(), this->vect[0]);
-	print(sortLarges);
+	// print(sortLarges);
 }
 
