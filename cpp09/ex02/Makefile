@@ -1,4 +1,4 @@
-NAME		=	PMergeMe
+NAME		=	PmergeMe
 
 CXX			=	c++
 
@@ -21,7 +21,7 @@ $(OBJDIR)/%.o:	%.cpp $(INCS) Makefile
 	$(CXX) $(CXXFLAGS) -I . -c $< -o $@
 
 $(NAME):		$(OBJS)
-	$(CXX) $(CXXFLAGS) $(OBJS) -I . -o $(NAME)
+	$(CXX) $(CXXFLAGS) $(OBJS) -I . -o $(NAME) -lm
 
 clean:
 	rm -rf $(OBJDIR)
