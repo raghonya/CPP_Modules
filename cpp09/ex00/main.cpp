@@ -3,8 +3,8 @@
 
 std::string	strtrim(std::string str)
 {
-	str.erase(str.find_last_not_of("\t\n ") + 1);
-	str.erase(0, str.find_first_not_of("\t\n "));
+	str.erase(str.find_last_not_of("\t ") + 1);
+	str.erase(0, str.find_first_not_of("\t "));
 	return (str);
 }
 

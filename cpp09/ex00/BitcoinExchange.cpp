@@ -17,7 +17,7 @@ BitcoinExchange&	BitcoinExchange::operator=(const BitcoinExchange& other)
 
 BitcoinExchange::~BitcoinExchange() {}
 
-void	BitcoinExchange::fileFormatCheck\
+void	BitcoinExchange::fileFormatCheck
 (const char *filename, const char *correctFormat)
 {
 	const char	*fileFormat = strrchr(filename, '.');
@@ -28,7 +28,7 @@ void	BitcoinExchange::fileFormatCheck\
 		", needs format " + (std::string)correctFormat);
 }
 
-void	BitcoinExchange::daysInMonthCheck\
+void	BitcoinExchange::daysInMonthCheck
 (const std::string &str, int year, int month)
 {
 	int	day = std::atoi(str.c_str());
@@ -65,6 +65,7 @@ void	BitcoinExchange::checkDate(const std::string& date)
 	while (getline(dateParse, part, '-'))
 	{
 		++iter;
+		if (iter > 3) throw std::invalid_argument("Invalid date type");
 		if (!part[0] || !isdigitStr(part))
 			throw std::invalid_argument("Invalid date type");
 		switch (iter)
@@ -82,7 +83,7 @@ void	BitcoinExchange::checkDate(const std::string& date)
 				break ;
 		}
 	}
-	if (iter != 3) throw std::invalid_argument("Invalid date type");
+	if (iter < 3) throw std::invalid_argument("Invalid date type");
 
 }
 
@@ -132,11 +133,7 @@ void	BitcoinExchange::databaseParse(char *filename)
 
 		// PRICE 
 		if (index != line.find_last_of(','))
-		{
-			std::cout << "Error in line `" << line << "`" << std::endl;
 			throw std::invalid_argument("Invalid data.csv file: Comma error");
-		}
-		index = line.find_last_of(',');
 		value = line.substr(index + 1);
 		value = strtrim(value);
 
@@ -161,10 +158,8 @@ void	BitcoinExchange::parseInputFile\
 	// VALUE
 	if (index != inputLine.find_last_of('|'))
 		throw std::invalid_argument("Invalid input line: Pipe error");
-	index = inputLine.find_last_of('|');
 	inputValue = inputLine.substr(index + 1);
 	inputValue = strtrim(inputValue);
-	// std::cout << "`" << inputValue << "`" << std::endl;
 	checkValue(inputValue, false);
 }
 

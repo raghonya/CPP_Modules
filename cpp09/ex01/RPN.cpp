@@ -13,9 +13,7 @@ void	RPN::parse(const std::string& str)
 	{
 		if (!std::isdigit(str[i]) && str[i] != ' ' && str[i] != '+' \
 		&& str[i] != '-' && str[i] != '*' && str[i] != '/')
-		{
 			throw std::invalid_argument("Undefined symbols in operation");
-		}
 		if (str[i + 1] && str[i] != '0' && std::isdigit(str[i]) && std::isdigit(str[i + 1]))
 			throw std::invalid_argument\
 			("The numbers used as arguments will always be less than 10. ");
@@ -39,8 +37,6 @@ double	RPN::operation(std::string str)
 			arr.pop();
 			double	first = arr.top();
 			arr.pop();
-			// PARSE ANEL STRINGY VOR URISH BAN CHGA
-			std::cout << first << str[index] << second << std::endl;
 			switch(str[index])
 			{
 				case '+':
@@ -64,6 +60,5 @@ double	RPN::operation(std::string str)
 	}
 	if (arr.size() > 1)
 		throw (std::invalid_argument("Invalid argument"));
-
 	return (result);
 }

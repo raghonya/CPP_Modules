@@ -25,8 +25,10 @@ class PmergeMe
 	public:
 		void	sortAndPrint(char **argv);
 		void	parseInput(char **input, int length);
+
 		template <typename C>
-		void	printInfo(C cont, struct timeval time) const;
+		void	printInfo
+		(C cont, struct timeval time, const std::string &contType) const;
 		template <typename C>
 		void	sortContainer(C& cont);
 };
@@ -53,7 +55,6 @@ void	intoPairs(C& arr, C& smalls)
 		sortLarges.push_back(arr[i + 1]);
 	}
 	arr = sortLarges;
-
 }
 
 template <typename C>
@@ -61,10 +62,6 @@ void	insert(C &arr, C smalls)
 {
 	size_t	powerOf2 = 2;
 
-	// std::cout << "SMALLS===========" << std::endl;
-	// print(smalls);
-	// std::cout << "Aand arr before" << std::endl;
-	// print(arr);
 	if (smalls.size() < 2)
 	{
 		arr.insert\
@@ -82,8 +79,6 @@ void	insert(C &arr, C smalls)
 			smalls.erase(smalls.begin());
 		powerOf2 = pow(2, i + 2) - powerOf2;
 	}
-	// std::cout <<"Arr after insert" <<std::endl;
-	// print(arr);
 }
 
 template <typename C>
@@ -91,8 +86,6 @@ void	notRealMerge(C &arr)
 {
 	C	smalls;
 
-	// std::cout << "larges array be like " << std::endl;
-	// print(arr);
 	if (arr.size() > 3)
 	{
 		intoPairs(arr, smalls);
@@ -126,7 +119,7 @@ void	PmergeMe::sortContainer(C& cont)
 }
 
 template <typename C>
-void	PmergeMe::printInfo(C cont, struct timeval time) const
+void	PmergeMe::printInfo(C cont, struct timeval time, const std::string &contType) const
 {
 	double start = (double)time.tv_usec / 1000 + time.tv_sec * 1000;
 	gettimeofday(&time, NULL);
@@ -135,7 +128,8 @@ void	PmergeMe::printInfo(C cont, struct timeval time) const
 	for (size_t i = 0; i < cont.size(); ++i)
 		std::cout << cont[i] << " ";
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << cont.size() << " elements with std::vector : ";
+	std::cout << "Time to process a range of " << cont.size();
+	std::cout << " elements with " << contType << ": ";
 	std::cout << current - start  << " ms" << std::endl;
 }
 

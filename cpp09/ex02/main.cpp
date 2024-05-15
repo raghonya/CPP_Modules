@@ -12,7 +12,7 @@ bool	isdigitStr(const std::string& str)
 void	printUnsorted(char **argv)
 {
 	for (int i = 1; argv[i]; ++i)
-		std::cout << argv[i] << " ";
+		std::cout << std::atoi(argv[i]) << " ";
 	std::cout << std::endl;
 }
 

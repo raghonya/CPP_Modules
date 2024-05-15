@@ -5,7 +5,7 @@
 void	print(std::vector<int> arr)
 {
 	for (std::vector<int>::iterator beg = arr.begin(); beg < arr.end(); ++beg )
-	std::cout << *beg << std::endl;
+		std::cout << *beg << std::endl;
 }
 
 PmergeMe::PmergeMe() {}
@@ -39,18 +39,17 @@ void	PmergeMe::parseInput(char **input, int length)
 		deq.push_back(tmp);
 	}
 }
-#include <unistd.h>
 
 void	PmergeMe::sortAndPrint(char **argv)
 {
 	struct timeval	time;
 
-	std::cout << "Unsorted Vector: ";
+	std::cout << "Unsorted list: ";
 	printUnsorted(argv);
 	gettimeofday(&time, NULL);
 	this->sortContainer(this->vect);
-	this->printInfo(this->vect, time);
+	this->printInfo(this->vect, time, "std::vector");
 	gettimeofday(&time, NULL);
 	this->sortContainer(this->deq);
-	this->printInfo(this->deq, time);
+	this->printInfo(this->deq, time, "std::deque");
 }
